@@ -45,13 +45,7 @@ export class LoginPage implements OnInit {
     .play()
 
 
-    this.anim.create()
-    .addElement(document.querySelector("#tema")!)
-    .duration(Infinity)
-    .iterations(Infinity)
-    .direction("normal")
-    .fromTo("transform","rotate(20deg)", "rotate(20deg)")
-    .play()
+
   }
 
   async animarError(index:number){

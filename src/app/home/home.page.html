@@ -1,8 +1,41 @@
 
-<ion-content [fullscreen]="true">
-    <h1>Hello World</h1>
-    <p>testeo del ionics</p>
+<ion-content [fullscreen]="true" class="ion-padding">
+    <ion-app>
+        <ion-menu contentId="main-content">
+          <ion-header>
+            <ion-toolbar color="tertiary">
+              <ion-title>Menu Content</ion-title>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content class="ion-padding">
+            <ion-icon src="/assets/{{icono}}.svg" id="tema" (click)="cambiarTema()"></ion-icon>
+            This is the menu content. <p></p>
+            <ion-button href="login">Login</ion-button>
+            <ion-button>Registro</ion-button>
+            <ion-button>Extra</ion-button>
+          </ion-content>
+        </ion-menu>
+        <div class="ion-page" id="main-content">
+          <ion-header>
+            <ion-toolbar>
+              <ion-buttons slot="start">
+                <ion-menu-button></ion-menu-button>
+              </ion-buttons>
+              <ion-title>Menu</ion-title>
+            </ion-toolbar>
+          </ion-header><ion-content class="ion-padding">
+            
+            <H1>Bienvenido(a) a TeLlevoAPP</H1>
+            <p>TeLlevoAPP es una aplicacion para estudiantes de Duoc que tengan problemas de movilizacion y para aquellos otros que quieran ayudar a estos ultimos.</p>
+            <p></p>
+            <p>¿Que Deseas Hacer el dia de Hoy?</p>
+            <ion-buttons><ion-button>Pedir</ion-button> <ion-button>Llevar</ion-button></ion-buttons>
+        </ion-content>
+          
+        </div>
+      </ion-app>
 
+      
 
 </ion-content>
 
