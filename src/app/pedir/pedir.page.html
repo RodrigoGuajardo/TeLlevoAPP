@@ -1,4 +1,6 @@
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" >
+
+
   <ion-app>
     <ion-menu contentId="main-content">
       <ion-header>
@@ -14,7 +16,7 @@
         <ion-button [routerLink]="['/home']">Home</ion-button>
       </ion-content>
     </ion-menu>
-    <div class="ion-page" id="main-content">
+    <div class="ion-page" id="main-content"></div>
       <ion-header>
         <ion-toolbar>
           <ion-buttons slot="start">
@@ -23,42 +25,55 @@
           <ion-title>Menu</ion-title>
         </ion-toolbar>
       </ion-header><ion-content class="ion-padding">
+        
+
         <div id="contenedor">
-          <H1>Bienvenido(a) a TeLlevoAPP</H1>
-        <p>En esta sección podras pedir movilización</p>
-        <ion-icon src="/assets/vehiculo.svg" id="iconVehicle"></ion-icon>
-        <ion-list [inset]="true">
-          <ion-item>
-            <ion-label>Nombre: Pedro Vidal</ion-label>
-            <ion-label>Vehiculo: Ford Raptor</ion-label>
-            <ion-button>Pedir</ion-button>
-          </ion-item>
-          <ion-item>
-            <ion-label>Nombre: Rodrigo Pereira</ion-label>
-            <ion-label>Vehiculo: Chevrolet Pick-Up</ion-label>
-            <ion-button>Pedir</ion-button>
-          </ion-item>
-          <ion-item>
-            <ion-label>Nombre: Francisco Martinez</ion-label>
-            <ion-label>Vehiculo: Toyota Hilux</ion-label>
-            <ion-button>Pedir</ion-button>
-          </ion-item>
-          <ion-item>
-            <ion-label>Nombre: Cristian Muñoz</ion-label>
-            <ion-label>Vehiculo: Nissan New Navara</ion-label>
-            <ion-button>Pedir</ion-button>
-          </ion-item>
-          <ion-item>
-            <ion-label>Nombre: Juan Nuñez</ion-label>
-            <ion-label>Vehiculo: Mitsubishi L-200</ion-label>
-            <ion-button>Pedir</ion-button>
-          </ion-item>
-        </ion-list>
+
+          <H1>Listo para Pedir?</H1>
+          <p>En esta sección podras pedir movilización</p>
+          <ion-icon src="/assets/vehiculo.svg" id="iconVehicle"></ion-icon>
+          <ion-list [inset]="true">
+            <ion-item>
+              <ion-label>Nombre: Pedro Vidal</ion-label>
+              <ion-label>Vehiculo: Ford Raptor</ion-label>
+              <ion-button>Pedir</ion-button>
+            </ion-item>
+            <ion-item>
+              <ion-label>Nombre: Rodrigo Pereira</ion-label>
+              <ion-label>Vehiculo: Chevrolet Pick-Up</ion-label>
+              <ion-button>Pedir</ion-button>
+            </ion-item>
+            <ion-item>
+              <ion-label>Nombre: Francisco Martinez</ion-label>
+              <ion-label>Vehiculo: Toyota Hilux</ion-label>
+              <ion-button>Pedir</ion-button>
+            </ion-item>
+            <ion-item>
+              <ion-label>Nombre: Cristian Muñoz</ion-label>
+              <ion-label>Vehiculo: Nissan New Navara</ion-label>
+              <ion-button>Pedir</ion-button>
+            </ion-item>
+            <ion-item>
+              <ion-label>Nombre: Juan Nuñez</ion-label>
+              <ion-label>Vehiculo: Mitsubishi L-200</ion-label>
+              <ion-button>Pedir</ion-button>
+            </ion-item>
+          </ion-list>
+
+
         </div>
-        
-        
+          
+       
+      
     </ion-content>
       
-    </div>
+    
+   
+    
   </ion-app>
+
+      
+
+  
+
 </ion-content>
