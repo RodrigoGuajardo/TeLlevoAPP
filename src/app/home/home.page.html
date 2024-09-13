@@ -9,9 +9,9 @@
           </ion-header>
           <ion-content class="ion-padding">
             <ion-icon src="/assets/{{icono}}.svg" id="tema" (click)="cambiarTema()"></ion-icon>
-            This is the menu content. <p></p>
-            <ion-button href="login">Login</ion-button>
-            <ion-button>Registro</ion-button>
+            <p></p>
+            <ion-button [routerLink]="['/login']">Login</ion-button>
+            <ion-button [routerLink]="['/registro']">Registro</ion-button>
             <ion-button>Extra</ion-button>
           </ion-content>
         </ion-menu>
@@ -29,7 +29,7 @@
             <p>TeLlevoAPP es una aplicacion para estudiantes de Duoc que tengan problemas de movilizacion y para aquellos otros que quieran ayudar a estos ultimos.</p>
             <p></p>
             <p>¿Que Deseas Hacer el dia de Hoy?</p>
-            <ion-buttons><ion-button>Pedir</ion-button> <ion-button>Llevar</ion-button></ion-buttons>
+            <ion-buttons><ion-button [routerLink]="['/pedir']">Pedir</ion-button> <ion-button [routerLink]="['/llevar']">Llevar</ion-button></ion-buttons>
         </ion-content>
           
         </div>
