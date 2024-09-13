@@ -21,8 +21,8 @@ export class HomePage implements OnInit {
     if(this.icono == "oscuro"){
       document.documentElement.style.setProperty("--fondo", "#212121");
       document.documentElement.style.setProperty("--fondo-input", "#1d2b2f");
-      document.documentElement.style.setProperty("--texto-input", "#848C9F");
-
+      document.documentElement.style.setProperty("--texto-input", "#ffffff");
+      document.documentElement.style.setProperty("--textos", "#ffffff");
       this.icono = "claro"
     }else{
       document.documentElement.style.setProperty("--fondo", "#00ffd9");
@@ -34,6 +34,11 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit(){
+    document.documentElement.style.setProperty("--fondo", "#212121");
+    document.documentElement.style.setProperty("--fondo-input", "#1d2b2f");
+    document.documentElement.style.setProperty("--texto-input", "#ffffff");
+    document.documentElement.style.setProperty("--textos", "#ffffff");
+    this.icono = "claro"
     
   }
 

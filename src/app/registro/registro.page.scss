@@ -1,0 +1,57 @@
+#contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    row-gap: 15px;
+    background-color: var(--fondo);
+
+    ion-icon{
+        color: var(--icono);
+        font-size: 6rem;
+    }
+
+    h1{
+        color: var(--textos);
+        font-size: 2rem;
+    }
+
+
+    input, button{
+        height: 2.5rem;
+        width: 80%;
+        text-align: center;
+        border-radius: 1.25rem;
+        border: none;
+        outline: none;
+    }
+
+    button{
+        color: #ffffff;
+        background-color: var(--icono);
+    }
+
+    input{
+        color: var(--texto-input);
+        background-color: var(--fondo-input);
+    }
+
+    p{
+        color: var(--textos);
+        cursor: pointer;
+        font-size: .8rem;
+    }
+}
+
+#tema{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 1.5rem;
+    color: var(--textos);
+}
+
+#contenedor, input{
+    transition: background-color .5s ease, color .5s ease;
+}

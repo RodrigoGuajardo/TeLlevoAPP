@@ -7,7 +7,9 @@
     <input type="password" placeholder="contraseña" [(ngModel)]="clave">
     <button (click)="login()">Ingresar</button>
     <p>Olvidé mi contraseña</p>
+    <p>No tienes Cuenta? <a [routerLink]="['/registro']">Haz click Aqui</a></p>
     <button [routerLink]="['/home']">Volver</button>
+    
   </div>
 
 </ion-content>

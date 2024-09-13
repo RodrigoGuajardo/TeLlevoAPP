@@ -1,13 +1,17 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>registro</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">registro</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-icon src="/assets/{{icono}}.svg" id="tema" (click)="cambiarTema()"></ion-icon>
+  <div id="contenedor">
+    <ion-icon src="/assets/logo.svg" id="logo"></ion-icon>
+    <h1>TeLLevoAPP</h1>
+    <input type="text" placeholder="Ingrese un nombre de Usuario" [(ngModel)]="usuario">
+    <input type="text" placeholder="Ingrese su nombre" [(ngModel)]="nombre">
+    <input type="text" placeholder="Ingrese su Apellido" [(ngModel)]="apellido">
+    <input type="password" placeholder="Ingrese una Contraseña" [(ngModel)]="clave1">
+    <input type="password" placeholder="Repita la Contraseña" [(ngModel)]="clave2">
+    <button (click)="registro()">Crear Cuenta</button>
+    <p>Tienes Cuenta?<a [routerLink]="['/login']"> Haz Click Aqui</a></p>
+    <button [routerLink]="['/home']">Volver</button>
+    
+  </div>
+
 </ion-content>

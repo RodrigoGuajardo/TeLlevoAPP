@@ -22,6 +22,11 @@ ion-menu::part(backdrop) {
         color: var(--icono);
         font-size: 6rem;
     }
+    ion-list{
+        color: var(--textos);
+        
+        font-size: .8rem;
+    }
 
     h1{
         color: var(--textos);
@@ -29,7 +34,6 @@ ion-menu::part(backdrop) {
     }
     p{
         color: var(--textos);
-        cursor: pointer;
         font-size: .8rem;
     }
 

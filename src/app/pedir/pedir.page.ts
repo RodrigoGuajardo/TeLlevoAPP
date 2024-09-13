@@ -22,8 +22,8 @@ export class PedirPage implements OnInit {
     if(this.icono == "oscuro"){
       document.documentElement.style.setProperty("--fondo", "#212121");
       document.documentElement.style.setProperty("--fondo-input", "#1d2b2f");
-      document.documentElement.style.setProperty("--texto-input", "#848C9F");
-      document.documentElement.style.setProperty("--textos", "#848C9F");
+      document.documentElement.style.setProperty("--texto-input", "#ffffff");
+      document.documentElement.style.setProperty("--textos", "#ffffff");
 
       this.icono = "claro"
     }else{
@@ -37,6 +37,11 @@ export class PedirPage implements OnInit {
   }
 
   ngOnInit(){
+    document.documentElement.style.setProperty("--fondo", "#212121");
+    document.documentElement.style.setProperty("--fondo-input", "#1d2b2f");
+    document.documentElement.style.setProperty("--texto-input", "#ffffff");
+    document.documentElement.style.setProperty("--textos", "#ffffff");
+    this.icono = "claro"
     this.anim.create()
     .addElement(document.querySelector("#iconVehicle")!)
     .duration(2000)
