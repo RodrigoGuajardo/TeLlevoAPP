@@ -3,13 +3,32 @@
   <div id="contenedor">
     <ion-icon src="/assets/logo.svg" id="logo"></ion-icon>
     <h1>TeLLevoAPP</h1>
-    <input type="text" placeholder="nombre de usuario" [(ngModel)]="usuario">
-    <input type="password" placeholder="contraseña" [(ngModel)]="clave">
+    <input type="text" placeholder="Usuario@ejemplo.com" [(ngModel)]="usuario">
+    <input type="password" placeholder="Contraseña" [(ngModel)]="clave">
     <button (click)="login()">Ingresar</button>
-    <p>Olvidé mi contraseña</p>
+    <p (click)="setOpen(true)">Olvidé mi contraseña</p>
     <p>No tienes Cuenta? <a [routerLink]="['/registro']">Haz click Aqui</a></p>
     <button [routerLink]="['/home']">Volver</button>
     
   </div>
 
 </ion-content>
+
+
+
+<ion-modal [isOpen]="isModalOpen">
+  <ng-template>
+    <ion-content >
+      
+      <div id="contenedor">
+        <ion-icon src="/assets/logo.svg"></ion-icon>
+        <h1>Recupera tu Clave</h1>
+        <input type="text" placeholder="Usuario@ejemplo.com" [(ngModel)]="usuario">
+        <button (click)="cambiarContra()">Recuperar</button>
+        <button (click)="setOpen(false)">Cancelar</button>
+      </div>
+    
+
+    </ion-content>
+  </ng-template>
+</ion-modal>

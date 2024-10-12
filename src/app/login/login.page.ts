@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AnimationController } from '@ionic/angular';
+import { AnimationController, LoadingController } from '@ionic/angular';
 import { Haptics, ImpactStyle } from '@capacitor/haptics';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -11,11 +12,30 @@ import { Haptics, ImpactStyle } from '@capacitor/haptics';
 export class LoginPage implements OnInit {
 
   icono   = "oscuro"
+  isModalOpen = false;
   usuario = ""
   clave   = ""
 
+
+
+  usuarios = [
+    {
+      nombre : "Juanin Juan Harry",
+      email: "juanito@juan.harry",
+      clave: "clavegod123"
+    },
+    {
+      nombre : "Rodrigo Guajardo",
+      email : "ror.guajardo@duocuc.cl",
+      clave : "clavegod123"
+    },
+    ]
+
   constructor(
-    private anim:AnimationController
+    private anim:AnimationController,
+    private http: HttpClient,
+    private loadingCtrl: LoadingController
+
   ) { }
 
   cambiarTema(){
@@ -69,12 +89,58 @@ export class LoginPage implements OnInit {
   }
 
   login(){
-    if(this.usuario != "juanito"){
-      this.animarError(0)
+
+    for(let u of this.usuarios){
+      if(u.email == this.usuario && u.clave == this.clave){
+        console.log(`Bienvenido ${u.nombre}!!!.`)
+        return
+      }
+
+       
+      if(this.usuario != u.email && this.clave != u.clave){
+        this.animarError(0)
+        this.animarError(1)
+        console.log("Datos Incorrecto(s), le queda(n) 1 intento(s) antes de borrar la cuenta!.")
+      }
+     
     }
-    if(this.clave != "123456"){
-      this.animarError(1)
     }
-  }
+
+    async cambiarContra(){
+      for(let u of this.usuarios){
+        if(u.email == this.usuario){
+          const loading = await this.loadingCtrl.create({
+            message: 'Cargando...',
+            
+          });
+          loading.present()
+          let nueva = Math.random().toString(36).slice(-8)
+          console.log(`Su nueva clave es ${nueva} !!!.`)
+          u.clave = nueva
+          let body = {
+            "nombre": u.nombre,
+            "app": "TeLlevoApp",
+            "clave": u.clave,
+            "email": u.email
+        }
+          this.http.post("https://myths.cl/api/reset_password.php",body)
+          .subscribe((data)=>{
+            console.log(data)
+            loading.dismiss()  
+          })
+          
+          return
+  
+        }
+  
+      }
+      console.log("Usuario No Encontrado!!!.")
+    }
+
+
+
+    setOpen(isOpen: boolean) {
+      this.isModalOpen = isOpen;
+    }
 
 }

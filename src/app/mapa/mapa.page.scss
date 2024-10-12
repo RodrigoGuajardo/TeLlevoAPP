@@ -1,0 +1,62 @@
+#map {
+    width: 100%;
+    height: 100vh;
+    z-index: 100;
+  }
+  
+  #input {
+    position: absolute;
+    bottom: calc(5rem + 10px);
+    z-index: 100;
+    width: 80%;
+    left: 10%;
+    height: 3rem;
+    border-radius: 10px;
+    background-color: #ffffff85;
+    border: 1px #cbcbcb solid;
+    padding: 0px 10px;
+  }
+  
+  #rutas {
+    position: absolute;
+    bottom: 9rem;
+    left: 10%;
+    width: 80%;
+    height: fit-content;
+    z-index: 100;
+    background-color: #ffffffc7;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  
+  .ruta {
+    height: 2.4rem;
+    border-bottom: 1px #e3e3e3 solid;
+    line-height: 2.4rem;
+  }
+  
+  .ruta:last-child{
+    border-bottom: none;
+  }
+  
+  #info-viaje{
+    position: absolute;
+    top: 0;
+    height: 3rem;
+    z-index: 101;
+    background-color: #ffffffc7;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    width: 100%;
+    font-weight: bold;
+  }
+  #info-viaje div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5px;
+  }
+  #info-viaje div ion-icon{
+    font-size: 2rem;
+  }

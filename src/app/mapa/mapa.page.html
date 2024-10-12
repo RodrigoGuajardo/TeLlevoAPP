@@ -1,0 +1,25 @@
+<ion-content [fullscreen]="true">
+  <div id="contenedor">
+    <div id="info-viaje">
+      <div class="distancia">
+        <ion-icon name="analytics"></ion-icon>
+        {{distancia}}
+      </div>
+      <div class="tiempo">
+        <ion-icon name="time"></ion-icon>
+        {{duracion}}
+      </div>
+    </div>
+
+    <div #map id="map"></div>
+
+    <input type="text" [(ngModel)]="end" (input)="updateSearchResults()" placeholder="Destino" id="input">
+    <div id="rutas" *ngIf="autocompleteItems" [hidden]="autocompleteItems.length == 0">
+      <div class="ruta" *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
+        {{ item.description }}
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>

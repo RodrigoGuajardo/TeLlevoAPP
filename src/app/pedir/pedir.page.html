@@ -31,6 +31,16 @@
 
           <H1>Listo para Pedir?</H1>
           <p>En esta sección podras pedir movilización</p>
+
+          <h6>Hasta donde?</h6>
+          <input  type="text" placeholder="Ingrese su Destino" [(ngModel)]="destinos">
+          <ion-button class="destino"(click)="guardarDestino(destinos)">Pedir</ion-button>
+
+
+
+
+
+
           <ion-icon src="/assets/vehiculo.svg" id="iconVehicle"></ion-icon>
           <ion-list [inset]="true">
             <ion-item>

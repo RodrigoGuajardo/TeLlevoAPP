@@ -1,5 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AnimationController } from '@ionic/angular';
+import { AnimationController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-pedir',
@@ -9,13 +10,19 @@ import { AnimationController } from '@ionic/angular';
 export class PedirPage implements OnInit {
 
 
+  destinos: any[] = []
+
   icono   = "oscuro"
   usuario = ""
   clave   = ""
 
   constructor(
-    private anim:AnimationController
+    private anim:AnimationController,
+    private toast: ToastController,
+    private http: HttpClient
   ) { }
+
+
 
 
   cambiarTema(){
@@ -51,6 +58,23 @@ export class PedirPage implements OnInit {
     .fromTo("transform", 'translateX(100px)', 'translateX(-100px)')
     .play()
     
+  }
+
+
+  async showToast(texto: string) {
+    const toast = await this.toast.create({
+      message: texto,
+      duration: 2500,
+      positionAnchor: 'footer',
+      cssClass: 'rounded-toast'
+    });
+    await toast.present();
+  }
+
+  guardarDestino(destino:any){
+    this.destinos.push(destino)
+    localStorage.setItem("destino", JSON.stringify(this.destinos))
+    this.showToast(`Destino ${destino} guardado con Exito!.`)
   }
 
 }
