@@ -12,7 +12,7 @@ export class MapaPage  {
 
   constructor(private platform: Platform, private zone: NgZone) { }
 
-  carrito: any[] = []
+  destinos: any[] = []
 
   input = ""
   
@@ -37,8 +37,8 @@ export class MapaPage  {
   
   
     ionViewDidEnter() {
-      if (localStorage.getItem("carrito")) {
-        this.carrito = JSON.parse(localStorage.getItem("carrito")!)
+      if (localStorage.getItem("destinos")) {
+        this.destinos = JSON.parse(localStorage.getItem("destinos")!)
       }
       this.platform.ready().then(() => {
         this.initMap()
