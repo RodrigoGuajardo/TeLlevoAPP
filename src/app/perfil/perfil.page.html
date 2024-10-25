@@ -3,7 +3,7 @@
     <ion-menu contentId="main-content">
       <ion-header>
         <ion-toolbar color="tertiary">
-          <ion-title>Menu Content</ion-title>
+          <ion-title>Menu</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
@@ -32,7 +32,7 @@
     </ion-header>
     <ion-content class="ion-padding">
       <h2>Bienvenido, {{ userName }}!</h2>
-    
+
       <h3>Viajes Creados</h3>
       <ion-list>
         <ion-item *ngFor="let viaje of viajesCreados">
@@ -42,7 +42,7 @@
           </ion-label>
         </ion-item>
       </ion-list>
-    
+
       <h3>Viajes Aceptados</h3>
       <ion-list>
         <ion-item *ngFor="let viaje of viajesAceptados">

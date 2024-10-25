@@ -12,13 +12,13 @@ export class PedirPage implements OnInit {
   userName: string = '';
   destino = ""
   nombre = ""
-  destinos: any []= []
-  icono   = "oscuro"
+  destinos: any[] = []
+  icono = "oscuro"
   usuario = ""
-  clave   = ""
+  clave = ""
 
   constructor(
-    private anim:AnimationController,
+    private anim: AnimationController,
     private toast: ToastController,
     private http: HttpClient
   ) { }
@@ -48,7 +48,7 @@ export class PedirPage implements OnInit {
       destino: destino,
       estado: 'Creado'
     };
-  
+
     let viajesCreados = JSON.parse(localStorage.getItem('viajesCreados') || '[]');
     viajesCreados.push(viajeNuevo);
     localStorage.setItem('viajesCreados', JSON.stringify(viajesCreados));
@@ -57,27 +57,27 @@ export class PedirPage implements OnInit {
 
   crearViaje(nombre: string, destino: string) {
     const viajes = JSON.parse(localStorage.getItem('viajes') || '[]');
-  
+
     // Aquí agregamos el nombre y el destino al nuevo viaje
     const nuevoViaje = { nombre, destino, fecha: new Date().toISOString() };
-  
+
     viajes.push(nuevoViaje);
     localStorage.setItem('viajes', JSON.stringify(viajes));
-  
+
     console.log('Viaje creado:', nuevoViaje);
     // Aquí puedes mostrar un toast o notificación de éxito
   }
-  
 
-  cambiarTema(){
-    if(this.icono == "oscuro"){
+
+  cambiarTema() {
+    if (this.icono == "oscuro") {
       document.documentElement.style.setProperty("--fondo", "#212121");
       document.documentElement.style.setProperty("--fondo-input", "#1d2b2f");
       document.documentElement.style.setProperty("--texto-input", "#ffffff");
       document.documentElement.style.setProperty("--textos", "#ffffff");
 
       this.icono = "claro"
-    }else{
+    } else {
       document.documentElement.style.setProperty("--fondo", "#00ffd9");
       document.documentElement.style.setProperty("--fondo-input", "#00ffd9");
       document.documentElement.style.setProperty("--texto-input", "#1b1b1b");
@@ -87,21 +87,21 @@ export class PedirPage implements OnInit {
     }
   }
 
-  ngOnInit(){
+  ngOnInit() {
     document.documentElement.style.setProperty("--fondo", "#212121");
     document.documentElement.style.setProperty("--fondo-input", "#1d2b2f");
     document.documentElement.style.setProperty("--texto-input", "#ffffff");
     document.documentElement.style.setProperty("--textos", "#ffffff");
     this.icono = "claro"
     this.anim.create()
-    .addElement(document.querySelector("#iconVehicle")!)
-    .duration(2000)
-    .iterations(Infinity)
-    .direction("alternate")
-    .fromTo("color", "#0010f5", "#36029e")
-    .fromTo("transform", 'translateX(100px)', 'translateX(-100px)')
-    .play()
-    
+      .addElement(document.querySelector("#iconVehicle")!)
+      .duration(2000)
+      .iterations(Infinity)
+      .direction("alternate")
+      .fromTo("color", "#0010f5", "#36029e")
+      .fromTo("transform", 'translateX(100px)', 'translateX(-100px)')
+      .play()
+
   }
 
 
@@ -115,11 +115,11 @@ export class PedirPage implements OnInit {
     await toast.present();
   }
 
-  guardarDestino(destino:any,nombre:any){
-    this.destinos.push(nombre,destino)
-    
+  guardarDestino(destino: any, nombre: any) {
+    this.destinos.push(nombre, destino)
+
     localStorage.setItem("destinos", JSON.stringify(this.destinos))
-    
+
     this.showToast(`Hola ${nombre} su viaje a ${destino} iniciara en breve!.`)
   }
 

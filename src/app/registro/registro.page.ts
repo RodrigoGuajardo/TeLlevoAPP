@@ -29,9 +29,9 @@ export class RegistroPage implements OnInit {
       document.documentElement.style.setProperty("--textos", "#ffffff");
       this.icono = "claro";
     } else {
-      document.documentElement.style.setProperty("--fondo", "#00ffd9");
-      document.documentElement.style.setProperty("--fondo-input", "#00ffd9");
-      document.documentElement.style.setProperty("--texto-input", "#1b1b1b");
+      document.documentElement.style.setProperty("--fondo", "#3c3f50");
+      document.documentElement.style.setProperty("--fondo-input", "#3c3f50");
+      document.documentElement.style.setProperty("--texto-input", "#1d2b2f");
       this.icono = "oscuro";
     }
   }
@@ -74,7 +74,7 @@ export class RegistroPage implements OnInit {
       this.animarError(0);
       valid = false;
     }
-    if (this.nombre.length<4) {
+    if (this.nombre.length < 3) {
       this.animarError(1);
       valid = false;
     }

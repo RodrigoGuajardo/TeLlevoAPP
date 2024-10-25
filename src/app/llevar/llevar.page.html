@@ -3,7 +3,7 @@
     <ion-menu contentId="main-content">
       <ion-header>
         <ion-toolbar color="tertiary">
-          <ion-title>Menu Content</ion-title>
+          <ion-title>Menu</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
@@ -48,7 +48,8 @@
               <td>{{ viaje.nombre }}</td>
               <td>{{ viaje.destino }}</td>
               <td>
-                <ion-button expand="full" color="success" [routerLink]="['/mapa']" (click)="irAMapa(viaje.destino)" (click)="aceptarViaje(viaje.destino)">
+                <ion-button expand="full" color="success" [routerLink]="['/mapa']" (click)="irAMapa(viaje.destino)"
+                  (click)="aceptarViaje(viaje.destino)">
                   Llevar
                 </ion-button>
               </td>

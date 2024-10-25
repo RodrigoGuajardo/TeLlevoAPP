@@ -3,7 +3,7 @@
     <ion-menu contentId="main-content">
       <ion-header>
         <ion-toolbar color="tertiary">
-          <ion-title>Menu Content</ion-title>
+          <ion-title>Menu</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
@@ -16,13 +16,14 @@
           <ion-button expand="full" color="tertiary" (click)="logout()">Cerrar Sesión</ion-button>
         </ng-container>
         <ng-template #loggedOut>
+          <p>Seleccione una opción:</p>
           <ion-button expand="full" color="primary" [routerLink]="['/login']">Login</ion-button>
           <ion-button expand="full" color="secondary" [routerLink]="['/registro']">Registro</ion-button>
         </ng-template>
-        <ion-button expand="full" color="tertiary" [routerLink]="['/home']">Home</ion-button>
+        <!-- <ion-button expand="full" color="tertiary" [routerLink]="['/home']">Home</ion-button> -->
       </ion-content>
     </ion-menu>
-    
+
 
     <div id="contenedor">
       <div class="ion-page" id="main-content">
@@ -39,16 +40,17 @@
 
         <ion-content>
           <h1>Bienvenido(a) a TeLlevoAPP</h1>
-          <p>TeLlevoAPP es una aplicación para estudiantes de Duoc que tienen problemas de movilización y para aquellos que quieren ayudar.</p>
-          
+          <p>TeLlevoAPP es una aplicación para estudiantes de Duoc que tienen problemas de movilización y para aquellos
+            que quieren ayudar.</p>
+
           <ng-container *ngIf="isLoggedIn(); else loggedOut">
             <p>¿Qué deseas hacer el día de hoy?</p>
-            <ion-buttons>
-              <ion-button expand="full" color="success" [routerLink]="['/pedir']">Pedir</ion-button>
-              <ion-button expand="full" color="warning" [routerLink]="['/llevar']">Llevar</ion-button>
-            </ion-buttons>
+            <ion-button expand="full" color="success" [routerLink]="['/pedir']"
+              [ngStyle]="{'border': '2px solid #28a745', 'border-radius': '8px'}">Pedir</ion-button>
+            <ion-button expand="full" color="warning" [routerLink]="['/llevar']"
+              [ngStyle]="{'border': '2px solid #ffc107', 'border-radius': '8px'}">Llevar</ion-button>
           </ng-container>
-      
+
           <ng-template #loggedOut>
             <p>Debes iniciar sesión para acceder a estas secciones.</p>
             <ion-button expand="full" [routerLink]="['/login']">Iniciar Sesión</ion-button>

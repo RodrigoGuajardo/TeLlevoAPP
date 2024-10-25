@@ -1,9 +1,9 @@
-import { Component, OnInit,Injectable } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ToastController, AnimationController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
-import {  } from '@angular/core';
+import { } from '@angular/core';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -13,12 +13,12 @@ export class HomePage implements OnInit {
 
   userName: string = '';
 
-  icono   = "oscuro"
+  icono = "oscuro"
   usuario = ""
-  clave   = ""
+  clave = ""
 
   constructor(
-    private anim:AnimationController,
+    private anim: AnimationController,
     private toast: ToastController,
     private http: HttpClient,
     private router: Router
@@ -34,7 +34,7 @@ export class HomePage implements OnInit {
       this.userName = usuarioStored.nombre; // Asignar el nombre del usuario
     }
   }
-  
+
 
 
   isLoggedIn(): boolean {
@@ -62,14 +62,14 @@ export class HomePage implements OnInit {
     }
   }
 
-  cambiarTema(){
-    if(this.icono == "oscuro"){
+  cambiarTema() {
+    if (this.icono == "oscuro") {
       document.documentElement.style.setProperty("--fondo", "#212121");
       document.documentElement.style.setProperty("--fondo-input", "#1d2b2f");
       document.documentElement.style.setProperty("--texto-input", "#ffffff");
       document.documentElement.style.setProperty("--textos", "#ffffff");
       this.icono = "claro"
-    }else{
+    } else {
       document.documentElement.style.setProperty("--fondo", "#00ffd9");
       document.documentElement.style.setProperty("--fondo-input", "#00ffd9");
       document.documentElement.style.setProperty("--texto-input", "#1b1b1b");
@@ -78,13 +78,13 @@ export class HomePage implements OnInit {
     }
   }
 
-  ngOnInit(){
+  ngOnInit() {
     document.documentElement.style.setProperty("--fondo", "#212121");
     document.documentElement.style.setProperty("--fondo-input", "#1d2b2f");
     document.documentElement.style.setProperty("--texto-input", "#ffffff");
     document.documentElement.style.setProperty("--textos", "#ffffff");
     this.icono = "claro"
-    
+
   }
 
   async showToast(texto: string) {
@@ -98,7 +98,7 @@ export class HomePage implements OnInit {
   }
 
 
- 
+
 
 
 
