@@ -20,8 +20,8 @@ export class LoginPage implements OnInit {
 
   usuarios = [
     {
-      nombre : "Juanin Juan Harry",
-      email: "juanito@juan.harry",
+      nombre : "Juan Nuñez",
+      email: "ju.nunezm@duocuc.cl",
       clave: "clavegod123"
     },
     {

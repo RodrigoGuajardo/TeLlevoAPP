@@ -26,3 +26,13 @@
 #container a {
   text-decoration: none;
 }
+
+#productos {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 5%;
+  overflow: auto;
+  width: 100%;
+  margin: 10px 0px;
+}

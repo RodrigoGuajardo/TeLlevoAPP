@@ -31,51 +31,41 @@
       </ion-header><ion-content class="ion-padding">
         
 
-        <div id="contenedor">
+        
+  <div id="contenedor">
 
-          <H1>Listo para Ayudar?</H1>
-          <p>En esta seccion podras ver a quienes puedes ayudar con transporte.</p>
-          <ion-icon src="/assets/vehiculo.svg" id="iconVehicle"></ion-icon>
-          
-          <ion-list>
-            <ion-item>
-              <ion-toggle>
-                <ion-label>Rodrigo Guajardo</ion-label>
-                <ion-note color="medium">Melipilla Fuenzalida 750</ion-note>
-              </ion-toggle>
-            </ion-item>
-            <ion-item>
-              <ion-toggle>
-                <ion-label>Alexis Prieto</ion-label>
-                <ion-note color="medium">Melipilla Vicuña Mackena 355</ion-note>
-              </ion-toggle>
-            </ion-item>
-            <ion-item>
-              <ion-toggle>
-                <ion-label>josé Martinéz</ion-label>
-                <ion-note color="medium">Melipilla 3 poniente 645</ion-note>
-              </ion-toggle>
-            </ion-item>
-          </ion-list>
-           <ion-button>Enviar Mensajes</ion-button>
+    <H1>Listo para Ayudar?</H1>
+    <p>En esta seccion podras ver a quienes puedes ayudar con transporte.</p>
+    
+    <ion-icon src="/assets/vehiculo.svg" id="iconVehicle"></ion-icon>
 
 
-        </div>
-          
-       
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Destino</th>
+          <th>  </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of destinos">
+          <td>{{ item.nombre }}</td>
+          <td [(ngModel)]="direccions">{{ item.destino }}</td>
+          <td><ion-button [routerLink]="['/mapa']" (click)="cargarViaje(direccions)">Llevar</ion-button></td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+  </div>
       
     </ion-content>
       
-    
-   
-    
   </ion-app>
-
-
-
-
-
-
-
 
 </ion-content>

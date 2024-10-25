@@ -10,7 +10,7 @@ import { Haptics, ImpactStyle } from '@capacitor/haptics';
 export class RegistroPage implements OnInit {
 
   icono   = "oscuro"
-  usuario = ""
+  email = ""
   nombre = ""
   apellido = ""
   clave1   = ""
@@ -71,10 +71,10 @@ export class RegistroPage implements OnInit {
   }
 
   registro(){
-    if(this.usuario == "" ){
+    if(this.email == "" ){
       this.animarError(0)
     }else{
-      if(this.usuario.length < 6 ){
+      if(this.email.length < 8 ){
         this.animarError(0)
       }
     }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ToastController } from '@ionic/angular';
 import { AnimationController } from '@ionic/angular';
 
 @Component({
@@ -8,12 +10,15 @@ import { AnimationController } from '@ionic/angular';
 })
 export class HomePage implements OnInit {
 
+
   icono   = "oscuro"
   usuario = ""
   clave   = ""
 
   constructor(
-    private anim:AnimationController
+    private anim:AnimationController,
+    private toast: ToastController,
+    private http: HttpClient
   ) { }
 
 
@@ -42,7 +47,18 @@ export class HomePage implements OnInit {
     
   }
 
+  async showToast(texto: string) {
+    const toast = await this.toast.create({
+      message: texto,
+      duration: 3000,
+      positionAnchor: 'footer',
+      cssClass: 'rounded-toast'
+    });
+    await toast.present();
+  }
 
+
+ 
 
 
 

@@ -9,8 +9,26 @@ import { AnimationController, ToastController } from '@ionic/angular';
 })
 export class PedirPage implements OnInit {
 
-
-  destinos: any[] = []
+  destino = ""
+  nombre = ""
+  destinos = [
+    {
+      nombre: "Alexis Prieto",
+      destino: "Pomaire"
+    },
+    {
+      nombre : "Rodrigo Guajardo",
+      destino : "Electorry.Spa"
+    },
+    {
+      nombre: "Jose Martinez",
+      destino: "Peru"
+    },
+    {
+      nombre : "Juan Nuñez",
+      destino : "China"
+    },
+    ]
 
   icono   = "oscuro"
   usuario = ""
@@ -71,10 +89,12 @@ export class PedirPage implements OnInit {
     await toast.present();
   }
 
-  guardarDestino(destino:any){
-    this.destinos.push(destino)
-    localStorage.setItem("destino", JSON.stringify(this.destinos))
-    this.showToast(`Destino ${destino} guardado con Exito!.`)
+  guardarDestino(destino:any,nombre:any){
+    this.destinos.push(nombre,destino)
+    
+    localStorage.setItem("destinos", JSON.stringify(this.destinos))
+    
+    this.showToast(`Hola ${nombre} su viaje a ${destino} iniciara en breve!.`)
   }
 
 }

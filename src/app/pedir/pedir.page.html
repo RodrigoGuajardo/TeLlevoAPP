@@ -28,52 +28,30 @@
         
 
         <div id="contenedor">
-
+          
           <H1>Listo para Pedir?</H1>
+          <ion-icon src="/assets/vehiculo.svg" id="iconVehicle"></ion-icon>
           <p>En esta sección podras pedir movilización</p>
 
           <h6>Hasta donde?</h6>
-          <input  type="text" placeholder="Ingrese su Destino" [(ngModel)]="destinos">
-          <ion-button class="destino"(click)="guardarDestino(destinos)">Pedir</ion-button>
+          <input  type="text" placeholder="Ingrese su Nombre / Apodo" [(ngModel)]="nombre">
+          <input  type="text" placeholder="Ingrese su Destino" [(ngModel)]="destino">
+
+          <ion-button class="destino"(click)="guardarDestino(destino,nombre)">Pedir</ion-button>
+          
+          <ion-button class="destino" [routerLink]="['/home']">Home</ion-button>
 
 
 
 
 
-
-          <ion-icon src="/assets/vehiculo.svg" id="iconVehicle"></ion-icon>
-          <ion-list [inset]="true">
-            <ion-item>
-              <ion-label>Nombre: Pedro Vidal</ion-label>
-              <ion-label>Vehiculo: Ford Raptor</ion-label>
-              <ion-button>Pedir</ion-button>
-            </ion-item>
-            <ion-item>
-              <ion-label>Nombre: Rodrigo Pereira</ion-label>
-              <ion-label>Vehiculo: Chevrolet Pick-Up</ion-label>
-              <ion-button>Pedir</ion-button>
-            </ion-item>
-            <ion-item>
-              <ion-label>Nombre: Francisco Martinez</ion-label>
-              <ion-label>Vehiculo: Toyota Hilux</ion-label>
-              <ion-button>Pedir</ion-button>
-            </ion-item>
-            <ion-item>
-              <ion-label>Nombre: Cristian Muñoz</ion-label>
-              <ion-label>Vehiculo: Nissan New Navara</ion-label>
-              <ion-button>Pedir</ion-button>
-            </ion-item>
-            <ion-item>
-              <ion-label>Nombre: Juan Nuñez</ion-label>
-              <ion-label>Vehiculo: Mitsubishi L-200</ion-label>
-              <ion-button>Pedir</ion-button>
-            </ion-item>
-          </ion-list>
+          
+          
 
 
         </div>
           
-       
+        
       
     </ion-content>
       
@@ -85,5 +63,5 @@
       
 
   
-
+  
 </ion-content>

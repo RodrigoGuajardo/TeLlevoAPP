@@ -1,5 +1,7 @@
+import { getLocaleDirection } from '@angular/common';
 import { Component, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { getElement } from 'ionicons/dist/types/stencil-public-runtime';
 declare var google: any;
 
 
@@ -12,8 +14,11 @@ export class MapaPage  {
 
   constructor(private platform: Platform, private zone: NgZone) { }
 
-  destinos: any[] = []
+  direccion:any[]= []
+  direccions= this.direccion
 
+  destino=""
+  
   input = ""
   
   autocompleteItems!: any[];
@@ -28,7 +33,7 @@ export class MapaPage  {
   
   public start: any = "Duoc UC: Sede Melipilla - Serrano, Melipilla, Chile";
   
-  public end: any = "Pomaire";
+  public end: any = this.destino;
   
   public directionsService: any;
   
@@ -37,9 +42,8 @@ export class MapaPage  {
   
   
     ionViewDidEnter() {
-      if (localStorage.getItem("destinos")) {
-        this.destinos = JSON.parse(localStorage.getItem("destinos")!)
-      }
+      this.destino = (localStorage.getItem("direccion")!)
+      console.log(this.destino)
       this.platform.ready().then(() => {
         this.initMap()
        })
@@ -267,5 +271,5 @@ export class MapaPage  {
      }
   
   
-}
+  }
   
