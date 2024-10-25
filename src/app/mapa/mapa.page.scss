@@ -1,20 +1,32 @@
+#contenedor {
+  position: relative; // Para manejar la posición de elementos absolutos
+  height: 100vh; // Asegurar que el contenedor ocupe toda la altura
+}
+
 #map {
   width: 100%;
-  height: 100vh;
-  z-index: 100;
+  height: 100%;
+  z-index: 0; // Asegurar que el mapa esté detrás de otros elementos
 }
 
 #input {
   position: absolute;
   bottom: calc(5rem + 10px);
-  z-index: 100;
+  z-index: 10; // Asegurar que esté encima del mapa
   width: 80%;
   left: 10%;
   height: 3rem;
   border-radius: 10px;
-  background-color: #006eff85;
-  border: 1px #000000 solid;
-  padding: 0px 10px;
+  background-color: rgba(0, 110, 255, 0.7); // Fondo semitransparente
+  border: 1px solid #000; // Borde más suave
+  padding: 0 10px;
+  font-size: 1rem; // Tamaño de fuente mejorado
+  transition: background-color 0.3s; // Transición suave
+
+  &:focus {
+      background-color: rgba(0, 110, 255, 0.9); // Cambio de color al hacer foco
+      outline: none; // Sin borde de enfoque
+  }
 }
 
 #rutas {
@@ -22,42 +34,47 @@
   bottom: 9rem;
   left: 10%;
   width: 80%;
-  height: fit-content;
-  z-index: 100;
-  background-color: #006eff85;
+  z-index: 10; // Asegurar que esté encima del mapa
+  background-color: rgba(0, 110, 255, 0.7); // Fondo semitransparente
   border-radius: 10px;
   padding: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); // Sombra para profundidad
 }
 
 .ruta {
   height: 2.4rem;
-  border-bottom: 1px #000000 solid;
+  border-bottom: 1px solid #000; // Borde más suave
   line-height: 2.4rem;
+  cursor: pointer; // Indicar que es seleccionable
+  transition: background-color 0.3s; // Transición suave al pasar el ratón
+
+  &:hover {
+      background-color: rgba(255, 255, 255, 0.1); // Color de fondo al pasar el ratón
+  }
 }
 
-.ruta:last-child{
-  border-bottom: none;
-}
-
-#info-viaje{
+#info-viaje {
   position: absolute;
   top: 0;
   height: 3rem;
-  z-index: 101;
-  background-color: #006eff85;
+  z-index: 20; // Asegurar que esté encima de otros elementos
+  background-color: rgba(0, 110, 255, 0.8); // Fondo semitransparente
   display: flex;
   justify-content: space-between;
+  align-items: center; // Centrar verticalmente
   padding: 10px;
   width: 100%;
   font-weight: bold;
-}
-#info-viaje div{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  column-gap: 5px;
-}
-#info-viaje div ion-icon{
-  font-size: 2rem;
-  
+  color: #fff; // Color del texto
+
+  div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      column-gap: 5px;
+  }
+
+  ion-icon {
+      font-size: 2rem;
+  }
 }

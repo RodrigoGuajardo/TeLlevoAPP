@@ -9,27 +9,10 @@ import { AnimationController, ToastController } from '@ionic/angular';
 })
 export class PedirPage implements OnInit {
 
+  userName: string = '';
   destino = ""
   nombre = ""
-  destinos = [
-    {
-      nombre: "Alexis Prieto",
-      destino: "Pomaire"
-    },
-    {
-      nombre : "Rodrigo Guajardo",
-      destino : "Electorry.Spa"
-    },
-    {
-      nombre: "Jose Martinez",
-      destino: "Peru"
-    },
-    {
-      nombre : "Juan Nuñez",
-      destino : "China"
-    },
-    ]
-
+  destinos: any []= []
   icono   = "oscuro"
   usuario = ""
   clave   = ""
@@ -40,8 +23,51 @@ export class PedirPage implements OnInit {
     private http: HttpClient
   ) { }
 
+  ionViewWillEnter() {
+    this.checkUser();
+  }
+
+  checkUser() {
+    const usuarioStored = JSON.parse(localStorage.getItem('usuario') || 'null');
+    if (usuarioStored) {
+      this.userName = usuarioStored.nombre; // Asignar el nombre del usuario
+    }
+  }
+
+  isLoggedIn(): boolean {
+    return localStorage.getItem('usuario') !== null;
+  }
+
+  logout() {
+    // localStorage.removeItem('usuario'); // Eliminar el usuario del localStorage
+    this.userName = ''; // Limpiar el nombre del usuario
+  }
+
+  crearViajePerfil(destino: string) {
+    const viajeNuevo = {
+      destino: destino,
+      estado: 'Creado'
+    };
+  
+    let viajesCreados = JSON.parse(localStorage.getItem('viajesCreados') || '[]');
+    viajesCreados.push(viajeNuevo);
+    localStorage.setItem('viajesCreados', JSON.stringify(viajesCreados));
+  }
 
 
+  crearViaje(nombre: string, destino: string) {
+    const viajes = JSON.parse(localStorage.getItem('viajes') || '[]');
+  
+    // Aquí agregamos el nombre y el destino al nuevo viaje
+    const nuevoViaje = { nombre, destino, fecha: new Date().toISOString() };
+  
+    viajes.push(nuevoViaje);
+    localStorage.setItem('viajes', JSON.stringify(viajes));
+  
+    console.log('Viaje creado:', nuevoViaje);
+    // Aquí puedes mostrar un toast o notificación de éxito
+  }
+  
 
   cambiarTema(){
     if(this.icono == "oscuro"){

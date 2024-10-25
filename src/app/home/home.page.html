@@ -9,11 +9,21 @@
       <ion-content class="ion-padding">
         <ion-icon src="/assets/{{icono}}.svg" id="tema" (click)="cambiarTema()"></ion-icon>
         <p></p>
-        <ion-button [routerLink]="['/login']">Login</ion-button>
-        <ion-button [routerLink]="['/registro']">Registro</ion-button>
+        <ng-container *ngIf="isLoggedIn(); else loggedOut">
+          <p>Bienvenido, {{ userName }}!</p>
+          <ion-button expand="full" [routerLink]="['/perfil']">Ir al Perfil</ion-button>
 
+          <ion-button expand="full" color="tertiary" (click)="logout()">Cerrar Sesión</ion-button>
+        </ng-container>
+        <ng-template #loggedOut>
+          <ion-button expand="full" color="primary" [routerLink]="['/login']">Login</ion-button>
+          <ion-button expand="full" color="secondary" [routerLink]="['/registro']">Registro</ion-button>
+        </ng-template>
+        <ion-button expand="full" color="tertiary" [routerLink]="['/home']">Home</ion-button>
       </ion-content>
     </ion-menu>
+    
+
     <div id="contenedor">
       <div class="ion-page" id="main-content">
         <ion-header>
@@ -23,22 +33,30 @@
             </ion-buttons>
             <ion-title>Menu</ion-title>
           </ion-toolbar>
-        </ion-header><ion-content class="ion-padding">
+        </ion-header>
 
-          <H1>Bienvenido(a) a TeLlevoAPP</H1>
-          <p>TeLlevoAPP es una aplicacion para estudiantes de Duoc que tengan problemas de movilizacion y para aquellos
-            otros que quieran ayudar a estos ultimos.</p>
-          <p></p>
-          <p>¿Que Deseas Hacer el dia de Hoy?</p>
-          <ion-buttons><ion-button [routerLink]="['/pedir']">Pedir</ion-button> <ion-button
-              [routerLink]="['/llevar']">Llevar</ion-button></ion-buttons>
+
+
+        <ion-content>
+          <h1>Bienvenido(a) a TeLlevoAPP</h1>
+          <p>TeLlevoAPP es una aplicación para estudiantes de Duoc que tienen problemas de movilización y para aquellos que quieren ayudar.</p>
+          
+          <ng-container *ngIf="isLoggedIn(); else loggedOut">
+            <p>¿Qué deseas hacer el día de hoy?</p>
+            <ion-buttons>
+              <ion-button expand="full" color="success" [routerLink]="['/pedir']">Pedir</ion-button>
+              <ion-button expand="full" color="warning" [routerLink]="['/llevar']">Llevar</ion-button>
+            </ion-buttons>
+          </ng-container>
+      
+          <ng-template #loggedOut>
+            <p>Debes iniciar sesión para acceder a estas secciones.</p>
+            <ion-button expand="full" [routerLink]="['/login']">Iniciar Sesión</ion-button>
+          </ng-template>
         </ion-content>
+
 
       </div>
     </div>
-
   </ion-app>
-
-
-
 </ion-content>

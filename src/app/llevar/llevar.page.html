@@ -1,10 +1,4 @@
 <ion-content [fullscreen]="true">
- 
-
-
-
-
-
   <ion-app>
     <ion-menu contentId="main-content">
       <ion-header>
@@ -15,57 +9,53 @@
       <ion-content class="ion-padding">
         <ion-icon src="/assets/{{icono}}.svg" id="tema" (click)="cambiarTema()"></ion-icon>
         <p></p>
-        <ion-button [routerLink]="['/login']">Login</ion-button>
-        <ion-button [routerLink]="['/registro']">Registro</ion-button>
-        <ion-button [routerLink]="['/home']">Home</ion-button>
+        <ng-container *ngIf="isLoggedIn(); else loggedOut">
+          <p>Bienvenido, {{ userName }}!</p>
+          <ion-button expand="full" [routerLink]="['/perfil']">Ir al Perfil</ion-button>
+          <ion-button expand="full" color="tertiary" (click)="logout()">Cerrar Sesión</ion-button>
+        </ng-container>
+        <ng-template #loggedOut>
+          <ion-button expand="full" color="primary" [routerLink]="['/login']">Login</ion-button>
+          <ion-button expand="full" color="secondary" [routerLink]="['/registro']">Registro</ion-button>
+        </ng-template>
+        <ion-button expand="full" color="tertiary" [routerLink]="['/home']">Home</ion-button>
       </ion-content>
     </ion-menu>
-    <div class="ion-page" id="main-content"></div>
+
+    <div class="ion-page" id="main-content">
       <ion-header>
         <ion-toolbar>
           <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
           </ion-buttons>
-          <ion-title>Menu</ion-title>
+          <ion-title>Viajes Agendados</ion-title>
         </ion-toolbar>
-      </ion-header><ion-content class="ion-padding">
-        
+      </ion-header>
+      <ion-content class="ion-padding">
+        <h1>Listo para Ayudar?</h1>
+        <p>En esta sección podrás ver los viajes agendados.</p>
 
-        
-  <div id="contenedor">
-
-    <H1>Listo para Ayudar?</H1>
-    <p>En esta seccion podras ver a quienes puedes ayudar con transporte.</p>
-    
-    <ion-icon src="/assets/vehiculo.svg" id="iconVehicle"></ion-icon>
-
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Destino</th>
-          <th>  </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of destinos">
-          <td>{{ item.nombre }}</td>
-          <td [(ngModel)]="direccions">{{ item.destino }}</td>
-          <td><ion-button [routerLink]="['/mapa']" (click)="cargarViaje(direccions)">Llevar</ion-button></td>
-        </tr>
-      </tbody>
-    </table>
-
-
-
-
-
-
-  </div>
-      
-    </ion-content>
-      
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Destino</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let viaje of viajes">
+              <td>{{ viaje.nombre }}</td>
+              <td>{{ viaje.destino }}</td>
+              <td>
+                <ion-button expand="full" color="success" [routerLink]="['/mapa']" (click)="irAMapa(viaje.destino)" (click)="aceptarViaje(viaje.destino)">
+                  Llevar
+                </ion-button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ion-content>
+    </div>
   </ion-app>
-
 </ion-content>

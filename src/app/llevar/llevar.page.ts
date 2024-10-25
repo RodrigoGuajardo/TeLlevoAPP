@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AnimationController, ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-llevar',
@@ -10,24 +11,48 @@ import { AnimationController, ToastController } from '@ionic/angular';
 export class LlevarPage implements OnInit {
 
   
-  
-  direccion:any[]=[]
+  userName: string = '';
+  direccion:any[]= []
+  viajes:any[]= []
   destino=""
   direccions=""
   icono   = "oscuro"
-  destinos : any[]= []
+  destinos: any[]= [];
 
   constructor(
     private anim:AnimationController,
     private toast: ToastController,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   ionViewWillEnter(){
     this.destinos = JSON.parse(localStorage.getItem("destinos")!)
-    
+    this.checkUser();
     
 
+  }
+  cargarViajes() {
+    const viajes = JSON.parse(localStorage.getItem('viajes') || '[]');
+    this.destinos = viajes; // Asignar los viajes a la propiedad destinos
+  }
+  
+
+
+  checkUser() {
+    const usuarioStored = JSON.parse(localStorage.getItem('usuario') || 'null');
+    if (usuarioStored) {
+      this.userName = usuarioStored.nombre; // Asignar el nombre del usuario
+    }
+  }
+
+  isLoggedIn(): boolean {
+    return localStorage.getItem('usuario') !== null;
+  }
+
+  logout() {
+    localStorage.removeItem('usuario'); // Eliminar el usuario del localStorage
+    this.userName = ''; // Limpiar el nombre del usuario
   }
 
 
@@ -49,6 +74,9 @@ export class LlevarPage implements OnInit {
   }
 
   ngOnInit(){
+    this.viajes=JSON.parse(localStorage.getItem('viajes') || '[]');
+
+    this.cargarViajes();
     const storedItems = localStorage.getItem('destinos');
     document.documentElement.style.setProperty("--fondo", "#212121");
     document.documentElement.style.setProperty("--fondo-input", "#1d2b2f");
@@ -67,20 +95,48 @@ export class LlevarPage implements OnInit {
   }
 
 
+  cargarViaje(destino: string) {
+    const viajes = JSON.parse(localStorage.getItem('viajes') || '[]');
+    
+    const nuevoViaje = { nombre: "Nombre de Usuario", destino };
+    
+    viajes.push(nuevoViaje);
+    localStorage.setItem('viajes', JSON.stringify(viajes));
+
+    this.showToast(`Viaje a ${destino} agendado!`);
+  }
+
   async showToast(texto: string) {
     const toast = await this.toast.create({
       message: texto,
       duration: 3000,
-      positionAnchor: 'footer',
-      cssClass: 'rounded-toast'
+      position: 'bottom'
     });
     await toast.present();
   }
 
-  cargarViaje(direccions:any){
-    this.direccion.push(direccions)
+  aceptarViaje(destino: string) {
+    const viajeAceptado = {
+      destino: destino,
+      estado: 'Aceptado'
+    };
+  
+    let viajesAceptados = JSON.parse(localStorage.getItem('viajesAceptados') || '[]');
+    viajesAceptados.push(viajeAceptado);
+    console.log(`guardado en perfil`);
+    localStorage.setItem('viajesAceptados', JSON.stringify(viajesAceptados));
+  }
+  
+
+
+
+
+  irAMapa(destino: string) {
+
+    console.log(`Navegando al mapa con destino: ${destino}`);
+    this.direccion.push(destino)
+    
     localStorage.setItem("direccion", JSON.stringify(this.direccion))
-    this.showToast(`Viaje Agendado!.`)
   }
 
 }

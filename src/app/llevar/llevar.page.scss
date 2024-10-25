@@ -1,101 +1,69 @@
-
-#contenedor{
+#contenedor {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
     row-gap: 15px;
-    background-color: var(--fondo);
+    padding: 20px;
+    background-color: var(--fondo, #f0f0f0); // Fondo amigable
 
-    
-    ion-icon{
-        color: var(--icono);
+    ion-icon {
+        color: var(--icono, #4a90e2); // Color del icono
         font-size: 6rem;
+        margin-bottom: 20px; // Espacio inferior
     }
 
-    h1{
-        color: var(--textos);
+    h1 {
+        color: var(--textos, #333); // Color del título
         font-size: 2rem;
-    }
-    p{
-        color: var(--textos);
-        cursor: pointer;
-        font-size: .8rem;
+        margin: 10px 0; // Espacio alrededor del título
     }
 
-    check{
-        font-size: 30px;
-        
-    }
-
-
-
-
-}
-
-#tema{
-    color: var(--icono);
-    font-size: 1.2rem;
-}
-
-.datos {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  
     p {
-      font-size: .7rem;
+        color: var(--textos, #666); // Color del texto descriptivo
+        cursor: pointer;
+        font-size: 1rem;
+        text-align: center; // Centrado
+        margin: 10px 0; // Espacio entre párrafos
     }
-  }
 
+    table {
+        width: 100%;
+        margin: 20px 0; // Espacio alrededor de la tabla
+        border-collapse: collapse; // Colapsar bordes
 
-.viajes {
-    width: calc(50% - 10px);
-    display: flex;
-    flex-direction: column;
-    height: 13rem;
+        th {
+            background-color: var(--primary-color, #4a90e2);
+            color: white;
+            padding: 10px;
+            text-align: left; // Alinear texto a la izquierda
+        }
+
+        td {
+            font-size: 0.9rem;
+            padding: 10px;
+            border-bottom: 1px solid #dcdcdc; // Línea divisoria entre filas
+
+            &:last-child {
+                text-align: right; // Alinear el último td a la derecha
+            }
+        }
+
+        tr:hover {
+            background-color: #f0f8ff; // Resaltar fila al pasar el ratón
+        }
+    }
 }
 
-table{
-    margin: 5vh 3vw;
+#tema {
+    color: var(--icono, #333); // Color del icono de tema
+    font-size: 1.5rem;
+    transition: color 0.3s ease; // Transición suave para el color
 }
 
-td{
-    font-size: .8rem;
-    padding: 0px 5px;
+// Clase para el botón "Llevar"
+ion-button {
+    margin: 5px 0; // Espacio entre botones
+    border-radius: 8px; // Bordes redondeados
 }
-
-td img{
-    width: 5rem;
-    min-width: 5rem;
-}
-
-td:nth-child(3){
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-align: right;
-}
-
-td ion-icon{
-    font-size: 1.7rem;
-    margin-left: 10px;
-}
-
-tr{
-    border-bottom: 1px #dcdcdc solid;
-}
-
-tr:last-child{
-    border-bottom: none;
-}
-
-#productos {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    padding: 5%;
-    overflow: auto;
-    width: 100%;
-    margin: 10px 0px;
-  }

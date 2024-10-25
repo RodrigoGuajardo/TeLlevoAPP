@@ -31,18 +31,27 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      <div id="contenedor">
-        <h1>Listo para Pedir?</h1>
-        <ion-icon src="/assets/vehiculo.svg" id="iconVehicle"></ion-icon>
-        <p>En esta sección podrás pedir movilización</p>
-
-        <h6>¿Hasta dónde?</h6>
-        <input type="text" placeholder="Ingrese su Nombre / Apodo" [(ngModel)]="nombre">
-        <input type="text" placeholder="Ingrese su Destino" [(ngModel)]="destino">
-
-        <ion-button class="destino" expand="full" (click)="crearViaje(nombre,destino)" (click)="crearViajePerfil(destino)">Pedir</ion-button>
-        <ion-button class="destino" expand="full" [routerLink]="['/home']">Home</ion-button>
-      </div>
+      <h2>Bienvenido, {{ userName }}!</h2>
+    
+      <h3>Viajes Creados</h3>
+      <ion-list>
+        <ion-item *ngFor="let viaje of viajesCreados">
+          <ion-label>
+            <h2>{{ viaje.destino }}</h2>
+            <p>Estado: {{ viaje.estado }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    
+      <h3>Viajes Aceptados</h3>
+      <ion-list>
+        <ion-item *ngFor="let viaje of viajesAceptados">
+          <ion-label>
+            <h2>{{ viaje.destino }}</h2>
+            <p>Estado: {{ viaje.estado }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
     </ion-content>
   </ion-app>
 </ion-content>

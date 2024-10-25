@@ -1,57 +1,83 @@
-#contenedor{
+#contenedor {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
-    row-gap: 15px;
-    background-color: var(--fondo);
+    padding: 20px;
+    background-color: var(--fondo, #f0f0f0); // Color de fondo amigable
 
-    ion-icon{
-        color: var(--icono);
+    ion-icon {
+        color: var(--icono, #4a90e2); // Color del icono
         font-size: 6rem;
+        margin-bottom: 20px; // Espacio inferior
     }
 
-    h1{
-        color: var(--textos);
+    h1 {
+        color: var(--textos, #333); // Color del título
         font-size: 2rem;
+        margin: 10px 0; // Espacio alrededor del título
     }
 
-
-    input, button{
+    input, button {
         height: 2.5rem;
         width: 80%;
         text-align: center;
         border-radius: 1.25rem;
         border: none;
         outline: none;
+        margin: 10px 0; // Espacio entre campos
     }
 
-    button{
+    button {
         color: #ffffff;
-        background-color: var(--icono);
+        background-color: var(--icono, #4a90e2); // Color del botón
+        transition: background-color 0.3s ease; // Transición suave para el fondo
     }
 
-    input{
-        color: var(--texto-input);
-        background-color: var(--fondo-input);
+    input {
+        color: var(--texto-input, #333); // Color del texto en input
+        background-color: var(--fondo-input, #fff); // Fondo del input
+        border: 1px solid #dcdcdc; // Borde del input
     }
 
-    p{
-        color: var(--textos);
+    p {
+        color: var(--textos, #666); // Color del texto
         cursor: pointer;
-        font-size: .8rem;
+        font-size: 0.8rem;
+        text-align: center; // Centrar texto
+        margin: 5px 0; // Espacio entre párrafos
     }
 }
 
-#tema{
+#tema {
     position: absolute;
     right: 20px;
     top: 20px;
     font-size: 1.5rem;
-    color: var(--textos);
+    color: var(--textos, #333); // Color del icono de tema
 }
 
-#contenedor, input{
-    transition: background-color .5s ease, color .5s ease;
+#contenedor-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--fondo, #fff); // Fondo del modal
+
+    ion-icon {
+        margin-bottom: 20px; // Espacio inferior
+    }
+
+    h1 {
+        color: var(--textos, #333); // Color del título en modal
+        font-size: 1.8rem; // Tamaño de fuente más pequeño
+        margin: 10px 0; // Espacio alrededor del título
+    }
+}
+
+// Transiciones suaves
+#contenedor, input {
+    transition: background-color 0.5s ease, color 0.5s ease;
 }

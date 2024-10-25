@@ -5,8 +5,11 @@
         <ion-icon name="analytics"></ion-icon>
         {{distancia}}
       </div>
+      <div class="volver">
+        <ion-icon name="home" [routerLink]="['/home']" (click)="resetList()"></ion-icon>
+      </div>
       <div class="tiempo">
-        <ion-icon name="time"></ion-icon>
+        <ion-icon name="time" ></ion-icon>
         {{duracion}}
       </div>
     </div>
@@ -19,7 +22,5 @@
         {{ item.description }}
       </div>
     </div>
-
   </div>
-
 </ion-content>

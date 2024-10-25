@@ -7,28 +7,21 @@
     <input type="password" placeholder="Contraseña" [(ngModel)]="clave">
     <button (click)="login()">Ingresar</button>
     <p (click)="setOpen(true)">Olvidé mi contraseña</p>
-    <p>No tienes Cuenta? <a [routerLink]="['/registro']">Haz click Aqui</a></p>
-    <button [routerLink]="['/home']">Volver</button>
-    
+    <p>No tienes Cuenta? <a [routerLink]="['/registro']">Haz click Aquí</a></p>
+    <button expand="full" color="secondary" [routerLink]="['/home']">Volver</button>
   </div>
 
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-content>
+        <div id="contenedor-modal">
+          <ion-icon src="/assets/logo.svg"></ion-icon>
+          <h1>Recupera tu Clave</h1>
+          <input type="text" placeholder="Usuario@ejemplo.com" [(ngModel)]="usuario">
+          <button (click)="cambiarContra()">Recuperar</button>
+          <button (click)="setOpen(false)">Cancelar</button>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>
-
-
-
-<ion-modal [isOpen]="isModalOpen">
-  <ng-template>
-    <ion-content >
-      
-      <div id="contenedor">
-        <ion-icon src="/assets/logo.svg"></ion-icon>
-        <h1>Recupera tu Clave</h1>
-        <input type="text" placeholder="Usuario@ejemplo.com" [(ngModel)]="usuario">
-        <button (click)="cambiarContra()">Recuperar</button>
-        <button (click)="setOpen(false)">Cancelar</button>
-      </div>
-    
-
-    </ion-content>
-  </ng-template>
-</ion-modal>

@@ -4,44 +4,71 @@ ion-menu::part(backdrop) {
   
   ion-menu::part(container) {
     border-radius: 0 20px 20px 0;
-  
     box-shadow: 4px 0px 16px rgba(255, 0, 255, 0.18);
   }
-
-#contenedor{
+  
+  #contenedor {
     display: flex;
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
-    row-gap: 15px;
+    padding: 20px; // Espacio alrededor del contenido
     background-color: var(--fondo);
-
-    
-    ion-icon{
-        color: var(--icono);
-        font-size: 6rem;
+    transition: background-color 0.3s; // Transición suave
+  
+    ion-icon {
+      color: var(--icono);
+      font-size: 6rem;
+      margin-bottom: 10px; // Espacio debajo del icono
     }
-    ion-list{
-        color: var(--textos);
-        
-        font-size: .8rem;
+  
+    h1 {
+      color: var(--textos);
+      font-size: 2rem;
+      margin: 10px 0; // Espaciado vertical
     }
-
-    h1{
-        color: var(--textos);
-        font-size: 2rem;
+  
+    p {
+      color: var(--textos);
+      font-size: 0.9rem;
+      text-align: center; // Centrar texto
+      margin: 5px 0; // Espacio vertical
     }
-    p{
-        color: var(--textos);
-        font-size: .8rem;
+  
+    h6 {
+      color: var(--textos);
+      font-size: 1rem;
+      margin: 10px 0; // Espacio vertical
+      text-align: center; // Centrar texto
     }
-
-
-
-
-}
-
-#tema{
+  
+    input {
+      height: 3rem;
+      width: 80%;
+      margin: 10px 0; // Espacio entre campos
+      border-radius: 10px;
+      border: 1px solid #ccc; // Borde suave
+      padding: 0 10px;
+      font-size: 1rem;
+  
+      &:focus {
+        border-color: var(--icono); // Borde de enfoque
+        outline: none; // Sin borde de enfoque
+      }
+    }
+  
+    .destino {
+      width: 80%;
+      margin: 10px 0; // Espacio entre botones
+    }
+  }
+  
+  #tema {
     color: var(--icono);
-    font-size: 1.2rem;
-}
+    font-size: 1.5rem;
+    position: absolute; // Posición fija
+    right: 20px;
+    top: 20px;
+    transition: color 0.3s; // Transición suave
+  }
+  

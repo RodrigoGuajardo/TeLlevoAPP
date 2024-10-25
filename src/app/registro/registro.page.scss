@@ -1,57 +1,71 @@
-#contenedor{
+#contenedor {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
-    row-gap: 15px;
+    padding: 20px; // Espacio alrededor del contenido
     background-color: var(--fondo);
-
-    ion-icon{
-        color: var(--icono);
-        font-size: 6rem;
+    transition: background-color 0.3s; // Transición suave
+  
+    ion-icon {
+      color: var(--icono);
+      font-size: 6rem;
+      margin-bottom: 10px; // Espacio debajo del icono
     }
-
-    h1{
-        color: var(--textos);
-        font-size: 2rem;
+  
+    h1 {
+      color: var(--textos);
+      font-size: 2rem;
+      margin: 10px 0; // Espaciado vertical
+      text-align: center; // Centrar texto
     }
-
-
-    input, button{
-        height: 2.5rem;
-        width: 80%;
-        text-align: center;
-        border-radius: 1.25rem;
-        border: none;
-        outline: none;
+  
+    input {
+      height: 3rem;
+      width: 80%;
+      margin: 10px 0; // Espacio entre campos
+      border-radius: 10px;
+      border: 1px solid #ccc; // Borde suave
+      padding: 0 10px;
+      font-size: 1rem;
+  
+      &:focus {
+        border-color: var(--icono); // Borde de enfoque
+        outline: none; // Sin borde de enfoque
+      }
     }
-
-    button{
-        color: #ffffff;
-        background-color: var(--icono);
+  
+    p {
+      color: var(--textos);
+      cursor: pointer;
+      font-size: 0.9rem;
+      text-align: center; // Centrar texto
+      margin: 10px 0; // Espacio vertical
     }
-
-    input{
-        color: var(--texto-input);
-        background-color: var(--fondo-input);
+  
+    a {
+      color: var(--icono); // Color del enlace
+      text-decoration: underline; // Subrayar el enlace
     }
-
-    p{
-        color: var(--textos);
-        cursor: pointer;
-        font-size: .8rem;
-    }
-}
-
-#tema{
+  }
+  
+  #tema {
     position: absolute;
     right: 20px;
     top: 20px;
     font-size: 1.5rem;
     color: var(--textos);
-}
-
-#contenedor, input{
-    transition: background-color .5s ease, color .5s ease;
-}
+    transition: color 0.3s; // Transición suave
+  }
+  
+  ion-button {
+    width: 80%;
+    margin: 10px 0; // Espacio entre botones
+    background-color: var(--icono);
+    color: #ffffff;
+    border-radius: 10px; // Bordes redondeados
+  
+   
+  }
+  

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ToastController } from '@ionic/angular';
-import { AnimationController } from '@ionic/angular';
+import { ToastController, AnimationController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
+import {  } from '@angular/core';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -10,6 +11,7 @@ import { AnimationController } from '@ionic/angular';
 })
 export class HomePage implements OnInit {
 
+  userName: string = '';
 
   icono   = "oscuro"
   usuario = ""
@@ -18,9 +20,47 @@ export class HomePage implements OnInit {
   constructor(
     private anim:AnimationController,
     private toast: ToastController,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
+  ionViewWillEnter() {
+    this.checkUser();
+  }
+
+  checkUser() {
+    const usuarioStored = JSON.parse(localStorage.getItem('usuario') || 'null');
+    if (usuarioStored) {
+      this.userName = usuarioStored.nombre; // Asignar el nombre del usuario
+    }
+  }
+  
+
+
+  isLoggedIn(): boolean {
+    return localStorage.getItem('usuario') !== null;
+  }
+
+  logout() {
+    localStorage.removeItem('usuario'); // Eliminar el usuario del localStorage
+    this.userName = ''; // Limpiar el nombre del usuario
+  }
+
+  navigateToPedir() {
+    if (this.isLoggedIn()) {
+      this.router.navigate(['/pedir']);
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  navigateToLlevar() {
+    if (this.isLoggedIn()) {
+      this.router.navigate(['/llevar']);
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
 
   cambiarTema(){
     if(this.icono == "oscuro"){

@@ -8,10 +8,8 @@
     <input type="text" placeholder="Ingrese su Apellido" [(ngModel)]="apellido">
     <input type="password" placeholder="Ingrese una Contraseña" [(ngModel)]="clave1">
     <input type="password" placeholder="Repita la Contraseña" [(ngModel)]="clave2">
-    <button (click)="registro()">Crear Cuenta</button>
-    <p>Tienes Cuenta?<a [routerLink]="['/login']"> Haz Click Aqui</a></p>
-    <button [routerLink]="['/home']">Volver</button>
-    
+    <ion-button expand="full" (click)="registro()" >Crear Cuenta</ion-button>
+    <p>Tienes Cuenta? <a [routerLink]="['/login']">Haz Click Aquí</a></p>
+    <ion-button expand="full" [routerLink]="['/home']">Volver</ion-button>
   </div>
-
 </ion-content>

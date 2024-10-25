@@ -1,38 +1,52 @@
-#container {
+#contenedor {
   display: flex;
-  text-align: center;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  min-height: 100vh; // Asegura que el contenedor ocupe toda la altura
+  text-align: center;
+  padding: 20px;
+  background-color: var(--background-color, #f0f0f0); // Color de fondo amigable
+
+  h1 {
+    font-size: 2rem;
+    color: var(--primary-color, #686565); // Color del título
+    margin: 20px 0; // Espacio alrededor del título
+  }
+
+  p {
+    font-size: 1rem;
+    color: #8c8c8c; // Color del texto descriptivo
+    margin: 10px 0; // Espacio entre párrafos
+  }
+
+  ion-button {
+    margin: 10px 0; // Espacio entre botones
+    border-radius: 8px; // Bordes redondeados
+
+    &.primary {
+      background-color: var(--primary-color, #4a90e2); // Color personalizado para Login
+    }
+
+    &.secondary {
+      background-color: var(--secondary-color, #e94e77); // Color personalizado para Registro
+    }
+
+    &.success {
+      background-color: var(--success-color, #28a745); // Color personalizado para Pedir
+    }
+
+    &.warning {
+      background-color: var(--warning-color, #ffc107); // Color personalizado para Llevar
+    }
+  }
+}
+
+#tema {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}
-
-#productos {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  padding: 5%;
-  overflow: auto;
-  width: 100%;
-  margin: 10px 0px;
+  right: 20px;
+  top: 20px;
+  font-size: 1.5rem;
+  color: var(--textos, #5f5e5e); // Color del icono de tema
+  transition: color 0.3s ease; // Suaviza el cambio de color
 }
