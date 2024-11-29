@@ -56,18 +56,18 @@ export class LlevarPage implements OnInit {
   }
 
 
-  cambiarTema(){
-    if(this.icono == "oscuro"){
+  cambiarTema() {
+    if (this.icono == "oscuro") {
+      // Usando el objeto document global
       document.documentElement.style.setProperty("--fondo", "#212121");
       document.documentElement.style.setProperty("--fondo-input", "#1d2b2f");
       document.documentElement.style.setProperty("--texto-input", "#ffffff");
       document.documentElement.style.setProperty("--textos", "#ffffff");
       this.icono = "claro"
-    }else{
-      document.documentElement.style.setProperty("--fondo", "#00ffd9");
+    } else {
+      document.documentElement.style.setProperty("--fondo", "#666666");
       document.documentElement.style.setProperty("--fondo-input", "#00ffd9");
-      document.documentElement.style.setProperty("--texto-input", "#1b1b1b");
-      document.documentElement.style.setProperty("--textos", "#1b1b1b");
+      document.documentElement.style.setProperty("--texto-input", "#000000");
 
       this.icono = "oscuro"
     }
@@ -127,7 +127,9 @@ export class LlevarPage implements OnInit {
     localStorage.setItem('viajesAceptados', JSON.stringify(viajesAceptados));
   }
   
-
+  borrarSecion(){
+    localStorage.clear();
+  }
 
 
 

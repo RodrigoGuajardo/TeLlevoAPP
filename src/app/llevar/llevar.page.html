@@ -1,61 +1,58 @@
 <ion-content [fullscreen]="true">
   <ion-app>
-    <ion-menu contentId="main-content">
-      <ion-header>
-        <ion-toolbar color="tertiary">
-          <ion-title>Menu</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content class="ion-padding">
-        <ion-icon src="/assets/{{icono}}.svg" id="tema" (click)="cambiarTema()"></ion-icon>
-        <p></p>
-        <ng-container *ngIf="isLoggedIn(); else loggedOut">
-          <p>Bienvenido, {{ userName }}!</p>
-          <ion-button expand="full" [routerLink]="['/perfil']">Ir al Perfil</ion-button>
-          <ion-button expand="full" color="tertiary" (click)="logout()">Cerrar Sesión</ion-button>
-        </ng-container>
-        <ng-template #loggedOut>
-          <ion-button expand="full" color="primary" [routerLink]="['/login']">Login</ion-button>
-          <ion-button expand="full" color="secondary" [routerLink]="['/registro']">Registro</ion-button>
-        </ng-template>
-        <ion-button expand="full" color="tertiary" [routerLink]="['/home']">Home</ion-button>
-      </ion-content>
-    </ion-menu>
-
     <div class="ion-page" id="main-content">
-      <ion-header>
-        <ion-toolbar>
-          <ion-buttons slot="start">
-            <ion-menu-button></ion-menu-button>
-          </ion-buttons>
-          <ion-title>Viajes Agendados</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content class="ion-padding">
-        <h1>Listo para Ayudar?</h1>
-        <p>En esta sección podrás ver los viajes agendados.</p>
+      
+      <ion-content>
 
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Destino</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let viaje of viajes">
-              <td>{{ viaje.nombre }}</td>
-              <td>{{ viaje.destino }}</td>
-              <td>
-                <ion-button expand="full" color="success" [routerLink]="['/mapa']" (click)="irAMapa(viaje.destino)"
-                  (click)="aceptarViaje(viaje.destino)">
-                  Llevar
-                </ion-button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <ion-fab>
+          <ion-fab-button size="small">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="end">
+          <ion-fab-button>
+            <ion-icon (click)="borrarSecion()" (click)="logout()" name="log-out"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button>
+            <ion-icon [routerLink]="['/pedir']" name="search"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button>
+            <ion-icon [routerLink]="['/home']" name="home"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button>
+            <ion-icon [routerLink]="['/perfil']" name="person"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button>
+            <ion-icon (click)="cambiarTema()" name="color-palette"></ion-icon>
+          </ion-fab-button>
+        </ion-fab-list>
+      </ion-fab>
+        <div id="contenedor">
+
+          <h1>Listo para Ayudar?</h1>
+          <p>En esta sección podrás ver los viajes agendados.</p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Destino</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let viaje of viajes">
+                <td>{{ viaje.nombre }}</td>
+                <td>{{ viaje.destino }}</td>
+                <td>
+                  <ion-button expand="full" color="success" [routerLink]="['/mapa']" (click)="irAMapa(viaje.destino)"
+                    (click)="aceptarViaje(viaje.destino)">
+                    Llevar
+                  </ion-button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </ion-content>
     </div>
   </ion-app>

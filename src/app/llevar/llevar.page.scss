@@ -1,15 +1,14 @@
 #contenedor {
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
-    row-gap: 15px;
-    padding: 20px;
-    background-color: var(--fondo, #f0f0f0); // Fondo amigable
+    // padding: 20%; //proporciona errores con las tablas si estan en fixed
+    background-color: var(--fondo);
+    transition: background-color 0.3s; // Transición suave
 
     ion-icon {
-        color: var(--icono, #4a90e2); // Color del icono
+        color: var(--icono, #0004fc); // Color del icono
         font-size: 6rem;
         margin-bottom: 20px; // Espacio inferior
     }
@@ -17,6 +16,7 @@
     h1 {
         color: var(--textos, #333); // Color del título
         font-size: 2rem;
+        padding-top: 30px;
         margin: 10px 0; // Espacio alrededor del título
     }
 
@@ -30,7 +30,8 @@
 
     table {
         width: 100%;
-        margin: 20px 0; // Espacio alrededor de la tabla
+        // margin: 20px 0; // Espacio alrededor de la tabla
+        table-layout: fixed; //evita que las celdas se expandan demasiado
         border-collapse: collapse; // Colapsar bordes
 
         th {
@@ -42,7 +43,7 @@
 
         td {
             font-size: 0.9rem;
-            padding: 10px;
+            // padding: 10px;
             border-bottom: 1px solid #dcdcdc; // Línea divisoria entre filas
 
             &:last-child {
@@ -51,7 +52,13 @@
         }
 
         tr:hover {
-            background-color: #f0f8ff; // Resaltar fila al pasar el ratón
+            background-color: #300502e3; // Resaltar fila al pasar el ratón
+        }
+
+        // Clase para el botón "Llevar"
+        ion-button {
+            margin: 5px 0; // Espacio entre botones
+            border-radius: 80px; // Bordes redondeados
         }
     }
 }
@@ -62,8 +69,24 @@
     transition: color 0.3s ease; // Transición suave para el color
 }
 
-// Clase para el botón "Llevar"
-ion-button {
-    margin: 5px 0; // Espacio entre botones
-    border-radius: 8px; // Bordes redondeados
-}
+
+
+
+// table {
+//     width: 100%; /* Asegura que la tabla ocupe el 100% del contenedor */
+//     table-layout: fixed; /* Fija el tamaño de las celdas, evitando que se expandan demasiado */
+//   }
+  
+//   th, td {
+//     padding: 8px; /* Ajusta el padding para que la tabla no esté demasiado espaciada */
+//     text-align: left; /* Alinea el contenido de las celdas a la izquierda */
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//     white-space: nowrap; /* Evita que el texto se desborde */
+//   }
+  
+//   td ion-button {
+//     max-width: 150px; /* Limita el tamaño del botón dentro de la tabla */
+//     white-space: nowrap; /* Evita que el texto dentro del botón se desborde */
+//   }
+  

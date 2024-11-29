@@ -1,50 +1,42 @@
 <ion-content [fullscreen]="true">
   <ion-app>
-    <ion-menu contentId="main-content">
-      <ion-header>
-        <ion-toolbar color="tertiary">
-          <ion-title>Menu</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content class="ion-padding">
-        <ion-icon src="/assets/{{icono}}.svg" id="tema" (click)="cambiarTema()"></ion-icon>
-        <p></p>
-        <ng-container *ngIf="isLoggedIn(); else loggedOut">
-          <p>Bienvenido, {{ userName }}!</p>
-          <ion-button expand="full" [routerLink]="['/perfil']">Ir al Perfil</ion-button>
-          <ion-button expand="full" color="tertiary" (click)="logout()">Cerrar Sesión</ion-button>
-        </ng-container>
-        <ng-template #loggedOut>
-          <ion-button expand="full" color="primary" [routerLink]="['/login']">Login</ion-button>
-          <ion-button expand="full" color="secondary" [routerLink]="['/registro']">Registro</ion-button>
-        </ng-template>
-        <ion-button expand="full" color="tertiary" [routerLink]="['/home']">Home</ion-button>
-      </ion-content>
-    </ion-menu>
-
     <div class="ion-page" id="main-content">
-      <ion-header>
-        <ion-toolbar>
-          <ion-buttons slot="start">
-            <ion-menu-button></ion-menu-button>
-          </ion-buttons>
-          <ion-title>Menu</ion-title>
-        </ion-toolbar>
-      </ion-header>
-
-      <ion-content class="ion-padding">
+      <ion-content>
+        <ion-fab>
+          <ion-fab-button size="small">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="end">
+          <ion-fab-button>
+            <ion-icon (click)="borrarSecion()" (click)="logout()" name="log-out"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button>
+            <ion-icon [routerLink]="['/home']" name="home"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button>
+            <ion-icon [routerLink]="['/llevar']" name="car"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button>
+            <ion-icon [routerLink]="['/perfil']" name="person"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button>
+            <ion-icon (click)="cambiarTema()" name="color-palette"></ion-icon>
+          </ion-fab-button>
+        </ion-fab-list>
+      </ion-fab>
         <div id="contenedor">
-          <h1>Listo para Pedir?</h1>
-          <ion-icon src="/assets/vehiculo.svg" id="iconVehicle"></ion-icon>
-          <p>En esta sección podrás pedir movilización</p>
-
-          <h6>¿Hasta dónde?</h6>
-          <input type="text" placeholder="Ingrese su Nombre / Apodo" [(ngModel)]="nombre">
-          <input type="text" placeholder="Ingrese su Destino" [(ngModel)]="destino">
-
-          <ion-button class="destino" expand="full" (click)="crearViaje(nombre, destino)"
-            (click)="crearViajePerfil(destino)">Pedir</ion-button>
-          <ion-button class="destino" expand="full" [routerLink]="['/home']">Home</ion-button>
+          
+              
+              <h1>Listo para Pedir?</h1>
+              <ion-icon src="/assets/vehiculo.svg" id="iconVehicle"></ion-icon>
+              <p>En esta sección podrás pedir movilización</p>
+    
+              <h6>¿Hasta dónde?</h6>
+              <input type="text" placeholder="Ingrese su Nombre / Apodo" [(ngModel)]="nombre">
+              <input type="text" placeholder="Ingrese su Destino" [(ngModel)]="destino">
+    
+              <ion-button class="destino" expand="full" [routerLink]="['/home']" (click)="crearViaje(nombre, destino)"
+                (click)="crearViajePerfil(destino)">Pedir</ion-button>
         </div>
       </ion-content>
     </div>

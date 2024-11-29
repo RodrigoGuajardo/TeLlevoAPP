@@ -1,64 +1,101 @@
 <ion-content [fullscreen]="true" class="ion-padding">
   <ion-app>
-    <ion-menu contentId="main-content">
-      <ion-header>
-        <ion-toolbar color="tertiary">
-          <ion-title>Menu</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content class="ion-padding">
-        <ion-icon src="/assets/{{icono}}.svg" id="tema" (click)="cambiarTema()"></ion-icon>
-        <p></p>
-        <ng-container *ngIf="isLoggedIn(); else loggedOut">
-          <p>Bienvenido, {{ userName }}!</p>
-          <ion-button expand="full" [routerLink]="['/perfil']">Ir al Perfil</ion-button>
-
-          <ion-button expand="full" color="tertiary" (click)="logout()">Cerrar Sesión</ion-button>
-        </ng-container>
-        <ng-template #loggedOut>
-          <p>Seleccione una opción:</p>
-          <ion-button expand="full" color="primary" [routerLink]="['/login']">Login</ion-button>
-          <ion-button expand="full" color="secondary" [routerLink]="['/registro']">Registro</ion-button>
-        </ng-template>
-        <!-- <ion-button expand="full" color="tertiary" [routerLink]="['/home']">Home</ion-button> -->
-      </ion-content>
-    </ion-menu>
-
-
-    <div id="contenedor">
-      <div class="ion-page" id="main-content">
-        <ion-header>
-          <ion-toolbar>
-            <ion-buttons slot="start">
-              <ion-menu-button></ion-menu-button>
-            </ion-buttons>
-            <ion-title>Menu</ion-title>
-          </ion-toolbar>
-        </ion-header>
-
-
-
+    <div class="ion-page" id="main-content">
+         
         <ion-content>
-          <h1>Bienvenido(a) a TeLlevoAPP</h1>
-          <p>TeLlevoAPP es una aplicación para estudiantes de Duoc que tienen problemas de movilización y para aquellos
-            que quieren ayudar.</p>
 
-          <ng-container *ngIf="isLoggedIn(); else loggedOut">
-            <p>¿Qué deseas hacer el día de hoy?</p>
-            <ion-button expand="full" color="success" [routerLink]="['/pedir']"
-              [ngStyle]="{'border': '2px solid #28a745', 'border-radius': '8px'}">Pedir</ion-button>
-            <ion-button expand="full" color="warning" [routerLink]="['/llevar']"
-              [ngStyle]="{'border': '2px solid #ffc107', 'border-radius': '8px'}">Llevar</ion-button>
-          </ng-container>
+            <!-- Parte con secion iniciada -->
 
-          <ng-template #loggedOut>
-            <p>Debes iniciar sesión para acceder a estas secciones.</p>
-            <ion-button expand="full" [routerLink]="['/login']">Iniciar Sesión</ion-button>
-          </ng-template>
+            <ng-container *ngIf="isLoggedIn(); else loggedOut">
+
+              <ion-fab>
+                <ion-fab-button size="small">
+                  <ion-icon name="add"></ion-icon>
+              </ion-fab-button>
+              <ion-fab-list side="end">
+                <ion-fab-button>
+                  <ion-icon (click)="borrarSecion()" (click)="logout()" name="log-out"></ion-icon>
+                </ion-fab-button>
+                <ion-fab-button>
+                  <ion-icon [routerLink]="['/pedir']" name="search"></ion-icon>
+                </ion-fab-button>
+                <ion-fab-button>
+                  <ion-icon [routerLink]="['/llevar']" name="car"></ion-icon>
+                </ion-fab-button>
+                <ion-fab-button>
+                  <ion-icon [routerLink]="['/perfil']" name="person"></ion-icon>
+                </ion-fab-button>
+                <ion-fab-button>
+                  <ion-icon (click)="cambiarTema()" src="/assets/{{icono}}.svg"></ion-icon>
+                </ion-fab-button>
+              </ion-fab-list>
+            </ion-fab>
+              
+              <div id="contenedor">
+
+                <h1>Bienvenido(a) a TeLlevoAPP</h1>
+                <p>TeLlevoAPP es una aplicación para estudiantes de Duoc que tienen problemas de movilización y para aquellos
+                que quieren ayudar.</p>
+
+
+                
+
+                <p>¿Qué deseas hacer el día de hoy?</p>
+                <ion-button expand="full" color="success" [routerLink]="['/pedir']"
+                  [ngStyle]="{'border': '2px solid #28a745', 'border-radius': '8px'}">Pedir</ion-button>
+                <ion-button expand="full" color="warning" [routerLink]="['/llevar']"
+                  [ngStyle]="{'border': '2px solid #ffc107', 'border-radius': '8px'}">Llevar</ion-button>
+
+
+
+
+              </div>
+      
+            </ng-container>
+
+
+
+
+            <!-- parte con secion no iniciada -->
+
+            <ng-template #loggedOut>
+
+              <ion-fab>
+                <ion-fab-button size="small">
+                  <ion-icon name="add"></ion-icon>
+                </ion-fab-button>
+                <ion-fab-list side="end">
+                  <ion-fab-button>
+                    <ion-icon [routerLink]="['/login']" name="log-in"></ion-icon>
+                  </ion-fab-button>
+                  <ion-fab-button>
+                    <ion-icon [routerLink]="['/registro']" name="person-add"></ion-icon>
+                  </ion-fab-button>
+                  <ion-fab-button>
+                    <ion-icon (click)="cambiarTema()" src="/assets/{{icono}}.svg"></ion-icon>
+                  </ion-fab-button>
+                </ion-fab-list>
+              </ion-fab>
+
+              <div id="contenedor">
+
+                <h1>Bienvenido(a) a TeLlevoAPP</h1>
+                <p>TeLlevoAPP es una aplicación para estudiantes de Duoc que tienen problemas de movilización y para aquellos
+                que quieren ayudar.</p>
+                <p>Para acceder a las caracteristicas de la aplicación por favor inicia secion haciendo clic <a href="/login">aqui</a> o en la opcion en el icono del +</p>
+              </div>
+              
+              </ng-template>
+
+              <!-- Borrado de Secion -->
+
+              <ion-button (click)="borrarSecion()">Borrar Secion</ion-button>
+
+
         </ion-content>
-
-
-      </div>
+      
     </div>
+
   </ion-app>
+
 </ion-content>

@@ -21,11 +21,17 @@ export class PedirPage implements OnInit {
     private anim: AnimationController,
     private toast: ToastController,
     private http: HttpClient
-  ) { }
+  ) {
+    
+
+   }
 
   ionViewWillEnter() {
     this.checkUser();
+    this.userName = localStorage.getItem('username') || 'Usuario Invitado';  // Valor predeterminado
   }
+
+
 
   checkUser() {
     const usuarioStored = JSON.parse(localStorage.getItem('usuario') || 'null');
@@ -57,34 +63,40 @@ export class PedirPage implements OnInit {
 
   crearViaje(nombre: string, destino: string) {
     const viajes = JSON.parse(localStorage.getItem('viajes') || '[]');
-
     // Aquí agregamos el nombre y el destino al nuevo viaje
+
+    nombre : { this.userName };
     const nuevoViaje = { nombre, destino, fecha: new Date().toISOString() };
 
     viajes.push(nuevoViaje);
     localStorage.setItem('viajes', JSON.stringify(viajes));
 
     console.log('Viaje creado:', nuevoViaje);
+
+    this.showToast(`Hola ${nombre} su viaje a ${destino} esta en espera!.`)
     // Aquí puedes mostrar un toast o notificación de éxito
   }
 
 
   cambiarTema() {
     if (this.icono == "oscuro") {
+      // Usando el objeto document global
       document.documentElement.style.setProperty("--fondo", "#212121");
       document.documentElement.style.setProperty("--fondo-input", "#1d2b2f");
       document.documentElement.style.setProperty("--texto-input", "#ffffff");
       document.documentElement.style.setProperty("--textos", "#ffffff");
-
       this.icono = "claro"
     } else {
-      document.documentElement.style.setProperty("--fondo", "#00ffd9");
+      document.documentElement.style.setProperty("--fondo", "#666666");
       document.documentElement.style.setProperty("--fondo-input", "#00ffd9");
-      document.documentElement.style.setProperty("--texto-input", "#1b1b1b");
-      document.documentElement.style.setProperty("--textos", "#1b1b1b");
+      document.documentElement.style.setProperty("--texto-input", "#000000");
 
       this.icono = "oscuro"
     }
+  }
+
+  borrarSecion(){
+    localStorage.clear();
   }
 
   ngOnInit() {
@@ -120,7 +132,7 @@ export class PedirPage implements OnInit {
 
     localStorage.setItem("destinos", JSON.stringify(this.destinos))
 
-    this.showToast(`Hola ${nombre} su viaje a ${destino} iniciara en breve!.`)
+    
   }
 
 }

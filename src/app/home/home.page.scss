@@ -1,12 +1,11 @@
 #contenedor {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  min-height: 100vh; // Asegura que el contenedor ocupe toda la altura
-  text-align: center;
-  padding: 20px;
-  background-color: var(--background-color, #f0f0f0); // Color de fondo amigable
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 20px; // Espacio alrededor del contenido
+  background-color: var(--fondo);
+  transition: background-color 0.3s; // Transición suave
 
   h1 {
     font-size: 2rem;
@@ -16,7 +15,7 @@
 
   p {
     font-size: 1rem;
-    color: #8c8c8c; // Color del texto descriptivo
+    color: var(--textos); // Color del texto descriptivo
     margin: 10px 0; // Espacio entre párrafos
   }
 
@@ -40,13 +39,20 @@
       background-color: var(--warning-color, #ffc107); // Color personalizado para Llevar
     }
   }
+
+  ion-fab{
+    color: #e94e77;
+  }
 }
+
+
+
 
 #tema {
   position: absolute;
   right: 20px;
   top: 20px;
   font-size: 1.5rem;
-  color: var(--textos, #5f5e5e); // Color del icono de tema
-  transition: color 0.3s ease; // Suaviza el cambio de color
+  color: var(--textos);
+  transition: color 0.3s; // Transición suave
 }

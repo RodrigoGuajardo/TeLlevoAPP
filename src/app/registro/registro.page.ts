@@ -11,11 +11,15 @@ import { Router } from '@angular/router';
 export class RegistroPage implements OnInit {
 
   icono = "oscuro";
+  users: any[] = JSON.parse(localStorage.getItem('users') || '[]');
   email = "";
   nombre = "";
   apellido = "";
   clave1 = "";
   clave2 = "";
+  usuario:string = "";
+  usuarios: string = localStorage.getItem('usuario')||'[]';
+
 
   constructor(private anim: AnimationController,
     private router: Router
@@ -23,16 +27,18 @@ export class RegistroPage implements OnInit {
 
   cambiarTema() {
     if (this.icono == "oscuro") {
+      // Usando el objeto document global
       document.documentElement.style.setProperty("--fondo", "#212121");
       document.documentElement.style.setProperty("--fondo-input", "#1d2b2f");
       document.documentElement.style.setProperty("--texto-input", "#ffffff");
       document.documentElement.style.setProperty("--textos", "#ffffff");
-      this.icono = "claro";
+      this.icono = "claro"
     } else {
-      document.documentElement.style.setProperty("--fondo", "#3c3f50");
-      document.documentElement.style.setProperty("--fondo-input", "#3c3f50");
-      document.documentElement.style.setProperty("--texto-input", "#1d2b2f");
-      this.icono = "oscuro";
+      document.documentElement.style.setProperty("--fondo", "#666666");
+      document.documentElement.style.setProperty("--fondo-input", "#00ffd9");
+      document.documentElement.style.setProperty("--texto-input", "#000000");
+
+      this.icono = "oscuro"
     }
   }
 
@@ -43,13 +49,13 @@ export class RegistroPage implements OnInit {
     document.documentElement.style.setProperty("--textos", "#ffffff");
     this.icono = "claro";
     this.anim.create()
-      .addElement(document.querySelector("#logo")!)
-      .duration(2000)
-      .iterations(Infinity)
-      .direction("alternate")
-      .fromTo("color", "#1500ff", "#6f00ff")
-      .fromTo("transform", "scale(1) rotate(-10deg)", "scale(1.5) rotate(10deg)")
-      .play();
+    .addElement(document.querySelector("#logo")!)
+    .duration(5000)
+    .iterations(Infinity)
+    .direction("alternate")
+    .fromTo("color", "#000000", "#ffffff")
+    .fromTo("transform", "scale(1) rotate(-10deg)", "scale(1.5) rotate(10deg)")
+    .play();
   }
 
   async animarError(index: number) {
@@ -78,16 +84,12 @@ export class RegistroPage implements OnInit {
       this.animarError(1);
       valid = false;
     }
-    if (this.apellido == "") {
+    if (this.clave1 == "" || this.clave1.length < 8 || this.clave1 !== this.clave2) {
       this.animarError(2);
       valid = false;
     }
-    if (this.clave1 == "" || this.clave1.length < 8 || this.clave1 !== this.clave2) {
-      this.animarError(3);
-      valid = false;
-    }
     if (this.clave2 == "") {
-      this.animarError(4);
+      this.animarError(3);
       valid = false;
     }
 

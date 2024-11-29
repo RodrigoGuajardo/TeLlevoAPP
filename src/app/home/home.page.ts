@@ -2,8 +2,17 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ToastController, AnimationController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { addIcons } from 'ionicons';
+import {
+  chevronDownCircle,
+  chevronForwardCircle,
+  chevronUpCircle,
+  colorPalette,
+  globe,
+} from 'ionicons/icons';
 
-import { } from '@angular/core';
+
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -13,16 +22,18 @@ export class HomePage implements OnInit {
 
   userName: string = '';
 
+  activeUser:any ;
   icono = "oscuro"
   usuario = ""
   clave = ""
-
   constructor(
     private anim: AnimationController,
     private toast: ToastController,
     private http: HttpClient,
     private router: Router
-  ) { }
+  ) {
+    addIcons({ chevronDownCircle, chevronForwardCircle, chevronUpCircle, colorPalette, globe });
+  }
 
   ionViewWillEnter() {
     this.checkUser();
@@ -35,15 +46,16 @@ export class HomePage implements OnInit {
     }
   }
 
-
-
   isLoggedIn(): boolean {
     return localStorage.getItem('usuario') !== null;
   }
 
   logout() {
-    localStorage.removeItem('usuario'); // Eliminar el usuario del localStorage
-    this.userName = ''; // Limpiar el nombre del usuario
+    // Eliminar el usuario activo del localStorage
+    localStorage.removeItem('activeUser');
+    
+    // Redirigir al login
+    window.location.href = '/login'; // O usar this.router.navigate(['/login']);
   }
 
   navigateToPedir() {
@@ -64,27 +76,35 @@ export class HomePage implements OnInit {
 
   cambiarTema() {
     if (this.icono == "oscuro") {
+      // Usando el objeto document global
       document.documentElement.style.setProperty("--fondo", "#212121");
       document.documentElement.style.setProperty("--fondo-input", "#1d2b2f");
       document.documentElement.style.setProperty("--texto-input", "#ffffff");
       document.documentElement.style.setProperty("--textos", "#ffffff");
       this.icono = "claro"
     } else {
-      document.documentElement.style.setProperty("--fondo", "#00ffd9");
+      document.documentElement.style.setProperty("--fondo", "#666666");
       document.documentElement.style.setProperty("--fondo-input", "#00ffd9");
-      document.documentElement.style.setProperty("--texto-input", "#1b1b1b");
+      document.documentElement.style.setProperty("--texto-input", "#000000");
 
       this.icono = "oscuro"
     }
   }
 
   ngOnInit() {
+
+    this.activeUser = JSON.parse(localStorage.getItem('activeUser') || '{}');
+
     document.documentElement.style.setProperty("--fondo", "#212121");
     document.documentElement.style.setProperty("--fondo-input", "#1d2b2f");
     document.documentElement.style.setProperty("--texto-input", "#ffffff");
     document.documentElement.style.setProperty("--textos", "#ffffff");
     this.icono = "claro"
+  }
 
+
+  borrarSecion(){
+    localStorage.clear();
   }
 
   async showToast(texto: string) {
@@ -96,16 +116,9 @@ export class HomePage implements OnInit {
     });
     await toast.present();
   }
-
-
-
-
-
-
-
-
-
-
-
 }
+
+
+
+
 

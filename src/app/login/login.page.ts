@@ -12,9 +12,12 @@ import { Router } from '@angular/router';
 export class LoginPage implements OnInit {
 
   icono = "oscuro";
+  users: any[] = JSON.parse(localStorage.getItem('usuario') || '[]');
   isModalOpen = false;
   usuario = "";
   clave = "";
+  intentos = 0; // Contador de intentos fallidos
+  usuarios: string = localStorage.getItem('usuario')||'[]';
 
   constructor(
     private anim: AnimationController,
@@ -23,27 +26,40 @@ export class LoginPage implements OnInit {
     private router: Router
   ) { }
 
+  ngOnInit() {
+    // Configuración inicial del tema y animación
+    this.cambiarTemaInicial();
+    this.iniciarAnimacionLogo();
+  }
+
   cambiarTema() {
     if (this.icono == "oscuro") {
+      // Usando el objeto document global
       document.documentElement.style.setProperty("--fondo", "#212121");
       document.documentElement.style.setProperty("--fondo-input", "#1d2b2f");
       document.documentElement.style.setProperty("--texto-input", "#ffffff");
       document.documentElement.style.setProperty("--textos", "#ffffff");
-      this.icono = "claro";
+      this.icono = "claro"
     } else {
-      document.documentElement.style.setProperty("--fondo", "#3c3f50");
-      document.documentElement.style.setProperty("--fondo-input", "#3c3f50");
-      document.documentElement.style.setProperty("--texto-input", "#1d2b2f");
-      this.icono = "oscuro";
+      document.documentElement.style.setProperty("--fondo", "#666666");
+      document.documentElement.style.setProperty("--fondo-input", "#00ffd9");
+      document.documentElement.style.setProperty("--texto-input", "#000000");
+
+      this.icono = "oscuro"
     }
   }
 
-  ngOnInit() {
+  cambiarTemaInicial() {
+    // Configuración inicial del tema
     document.documentElement.style.setProperty("--fondo", "#212121");
     document.documentElement.style.setProperty("--fondo-input", "#1d2b2f");
     document.documentElement.style.setProperty("--texto-input", "#ffffff");
     document.documentElement.style.setProperty("--textos", "#ffffff");
     this.icono = "claro";
+  }
+
+  iniciarAnimacionLogo() {
+    // Animación en el logo
     this.anim.create()
       .addElement(document.querySelector("#logo")!)
       .duration(2000)
@@ -88,18 +104,21 @@ export class LoginPage implements OnInit {
   }
 
   async cambiarContra() {
-    const usuarioStored = JSON.parse(localStorage.getItem('usuario') || 'null');
+    const usuarioStored = JSON.parse(localStorage.getItem('users') || 'null');
 
     if (usuarioStored && usuarioStored.email === this.usuario) {
       const loading = await this.loadingCtrl.create({
-        message: 'Cargando...',
+        message: 'Cargando...'
       });
-      loading.present();
+      await loading.present();
+
+      // Generamos una nueva clave aleatoria
       let nueva = Math.random().toString(36).slice(-8);
       console.log(`Su nueva clave es ${nueva} !!!.`);
       usuarioStored.clave = nueva; // Actualizamos la clave en el objeto
       localStorage.setItem('usuario', JSON.stringify(usuarioStored)); // Guardamos de nuevo en localStorage
 
+      // Enviar nueva clave al servidor (puedes agregar tu propia lógica aquí)
       let body = {
         "nombre": usuarioStored.nombre,
         "app": "TeLlevoApp",

@@ -43,6 +43,10 @@ export class PerfilPage implements OnInit {
     this.userName = ''; // Limpiar el nombre del usuario
   }
 
+  borrarSecion(){
+    localStorage.clear();
+  }
+
 
   cambiarTema(){
     if(this.icono == "oscuro"){

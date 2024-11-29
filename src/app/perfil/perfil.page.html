@@ -1,35 +1,29 @@
 <ion-content [fullscreen]="true">
   <ion-app>
-    <ion-menu contentId="main-content">
-      <ion-header>
-        <ion-toolbar color="tertiary">
-          <ion-title>Menu</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content class="ion-padding">
-        <ion-icon src="/assets/{{icono}}.svg" id="tema" (click)="cambiarTema()"></ion-icon>
-        <p></p>
-        <ng-container *ngIf="isLoggedIn(); else loggedOut">
-          <p>Bienvenido, {{ userName }}!</p>
-          <ion-button expand="full" [routerLink]="['/perfil']">Ir al Perfil</ion-button>
-          <ion-button expand="full" color="tertiary" (click)="logout()">Cerrar Sesión</ion-button>
-        </ng-container>
-        <ng-template #loggedOut>
-          <ion-button expand="full" color="primary" [routerLink]="['/login']">Login</ion-button>
-          <ion-button expand="full" color="secondary" [routerLink]="['/registro']">Registro</ion-button>
-        </ng-template>
-        <ion-button expand="full" color="tertiary" [routerLink]="['/home']">Home</ion-button>
-      </ion-content>
-    </ion-menu>
-    <div class="ion-page" id="main-content"></div>
-    <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title>Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
+
+    <div class="ion-page" id="contenedor"></div>
+    <ion-fab>
+      <ion-fab-button size="small">
+        <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="end">
+      <ion-fab-button>
+        <ion-icon (click)="borrarSecion()" (click)="logout()" name="log-out"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button>
+        <ion-icon [routerLink]="['/pedir']" name="search"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button>
+        <ion-icon [routerLink]="['/llevar']" name="car"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button>
+        <ion-icon [routerLink]="['/home']" name="home"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button>
+        <ion-icon (click)="cambiarTema()" name="color-palette"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
     <ion-content class="ion-padding">
       <h2>Bienvenido, {{ userName }}!</h2>
 
@@ -53,5 +47,8 @@
         </ion-item>
       </ion-list>
     </ion-content>
+  
   </ion-app>
+
+
 </ion-content>
