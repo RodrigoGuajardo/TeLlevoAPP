@@ -116,6 +116,14 @@ export class LoginPage implements OnInit {
         let nueva = Math.random().toString(36).slice(-8)
         console.log(`Su nueva clave es ${nueva} !!!.`)
         usuarioStored.clave = nueva
+
+        const usuario = {
+          email: usuarioStored.email,
+          nombre: usuarioStored.nombre,
+          apellido: usuarioStored.apellido,
+          clave: nueva // Aquí puedes aplicar algún hash si es necesario
+        };
+        localStorage.setItem('usuario', JSON.stringify(usuario));
         let body = {
           "nombre": usuarioStored.nombre,
           "app": "TeLlevoApp",
