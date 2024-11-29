@@ -1,0 +1,23 @@
+#contenedor1 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    
+    background-color: var(--fondo);
+    transition: background-color 0.3s; // Transición suave
+  
+    h1 {
+      font-size: 2rem;
+      color: var(--primary-color, #d5d5d5); // Color del título
+      
+    }
+  
+    p {
+      font-size: 1rem;
+      color: var(--textos); // Color del texto descriptivo
+      margin: 10px 0; // Espacio entre párrafos
+    }
+  
+
+  }

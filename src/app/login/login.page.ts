@@ -14,7 +14,7 @@ export class LoginPage implements OnInit {
   icono = "oscuro";
   users: any[] = JSON.parse(localStorage.getItem('usuario') || '[]');
   isModalOpen = false;
-  usuario = "";
+  usuario ="";
   clave = "";
   intentos = 0; // Contador de intentos fallidos
   usuarios: string = localStorage.getItem('usuario')||'[]';
@@ -102,42 +102,42 @@ export class LoginPage implements OnInit {
     this.animarError(1);
     console.log("Datos Incorrecto(s), le queda(n) 1 intento(s) antes de borrar la cuenta!.");
   }
-
-  async cambiarContra() {
-    const usuarioStored = JSON.parse(localStorage.getItem('users') || 'null');
-
-    if (usuarioStored && usuarioStored.email === this.usuario) {
-      const loading = await this.loadingCtrl.create({
-        message: 'Cargando...'
-      });
-      await loading.present();
-
-      // Generamos una nueva clave aleatoria
-      let nueva = Math.random().toString(36).slice(-8);
-      console.log(`Su nueva clave es ${nueva} !!!.`);
-      usuarioStored.clave = nueva; // Actualizamos la clave en el objeto
-      localStorage.setItem('usuario', JSON.stringify(usuarioStored)); // Guardamos de nuevo en localStorage
-
-      // Enviar nueva clave al servidor (puedes agregar tu propia lógica aquí)
-      let body = {
-        "nombre": usuarioStored.nombre,
-        "app": "TeLlevoApp",
-        "clave": usuarioStored.clave,
-        "email": usuarioStored.email
-      };
-      this.http.post("https://myths.cl/api/reset_password.php", body)
-        .subscribe((data) => {
-          console.log(data);
-          loading.dismiss();
+  //posible nuevo metodo para cambiar la contraseña a voluntade
+  //osea uno elegir la contraseña nueva (solo si estas logeado)
+  async cambiarContra(){
+    const usuarioStored = JSON.parse(localStorage.getItem('usuario') || 'null');
+    
+      if(usuarioStored.email == this.usuario){
+        const loading = await this.loadingCtrl.create({
+          message: 'Cargando...',
+          
         });
-
-      return;
+        loading.present()
+        let nueva = Math.random().toString(36).slice(-8)
+        console.log(`Su nueva clave es ${nueva} !!!.`)
+        usuarioStored.clave = nueva
+        let body = {
+          "nombre": usuarioStored.nombre,
+          "app": "TeLlevoApp",
+          "clave": usuarioStored.clave,
+          "email": usuarioStored.email
+      }
+        this.http.post("https://myths.cl/api/reset_password.php",body)
+        .subscribe((data)=>{
+          console.log(data)
+          loading.dismiss()  
+        })
+        
+        return
+    }else{
+      
+    console.log("Usuario No Encontrado!!!.");
+  
     }
 
-    console.log("Usuario No Encontrado!!!.");
   }
-
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
   }
 }
+

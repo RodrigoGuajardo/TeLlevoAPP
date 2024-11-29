@@ -8,7 +8,7 @@
         </ion-fab-button>
         <ion-fab-list side="end">
           <ion-fab-button>
-            <ion-icon (click)="borrarSecion()" (click)="logout()" name="log-out"></ion-icon>
+            <ion-icon (click)="borrarSecion()" (click)="logout()" [routerLink]="['/home']" name="log-out"></ion-icon>
           </ion-fab-button>
           <ion-fab-button>
             <ion-icon [routerLink]="['/home']" name="home"></ion-icon>
