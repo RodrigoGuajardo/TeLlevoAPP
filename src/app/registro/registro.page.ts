@@ -13,7 +13,7 @@ export class RegistroPage implements OnInit {
   usuarioCreado: any [] = []
 
   icono = "oscuro";
-  users: any[] = JSON.parse(localStorage.getItem('users') || '[]');
+  users: any[] = [];
   email = "";
   nombre = "";
   apellido = "";
@@ -96,14 +96,17 @@ export class RegistroPage implements OnInit {
     }
 
     if (valid) {
-      // Guardar los datos en localStorage
+
       const usuario = {
         email: this.email,
         nombre: this.nombre,
         apellido: this.apellido,
-        clave: this.clave1 // Aquí puedes aplicar algún hash si es necesario
+        clave: this.clave1
       };
+      
+
       localStorage.setItem('usuario', JSON.stringify(usuario));
+      
       console.log('Usuario registrado:', usuario);
       this.router.navigate(['/login']);
 

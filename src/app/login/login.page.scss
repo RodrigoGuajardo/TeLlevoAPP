@@ -13,6 +13,18 @@
         margin-bottom: 20px; // Espacio inferior
     }
 
+    ion-modal {
+        ion-button{
+            height: 2.5rem;
+            width: 80%;
+            text-align: center;
+            border-radius: 1.25rem;
+            border: none;
+            outline: none;
+            margin: 10px 0; // Espacio entre campos
+        }
+    }
+
     h1 {
         color: var(--textos, #333); // Color del título
         font-size: 2rem;
