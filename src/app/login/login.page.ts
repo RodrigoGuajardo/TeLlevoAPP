@@ -15,6 +15,7 @@ export class LoginPage implements OnInit {
   users: any[] = JSON.parse(localStorage.getItem('usuario') || '[]');
   isModalOpen = false;
   usuario ="";
+  userLog: string = '' ;
   clave = "";
   intentos = 0; // Contador de intentos fallidos
   usuarios: string = localStorage.getItem('usuario')||'[]';
@@ -87,13 +88,23 @@ export class LoginPage implements OnInit {
 
   login() {
     const usuarioStored = JSON.parse(localStorage.getItem('usuario') || 'null');
-
     if (usuarioStored) {
       if (usuarioStored.email === this.usuario && usuarioStored.clave === this.clave) {
+        this.userLog = usuarioStored.nombre;
+        
+        
+        //experimento para intento de reparacion de login
+        const usuarioLogueado = {
+          email: usuarioStored.email,
+          nombre: usuarioStored.nombre,
+          apellido: usuarioStored.apellido,
+          clave: usuarioStored.clave 
+        };
+        localStorage.setItem('usuarioLogueado', JSON.stringify(usuarioLogueado));
         console.log(`Bienvenido ${usuarioStored.nombre}!!!.`);
         this.router.navigate(['/home']);
-        // Aquí puedes redirigir al usuario a otra página o mostrar un mensaje de éxito
         return;
+
       }
     }
 

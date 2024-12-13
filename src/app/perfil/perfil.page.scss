@@ -1,23 +1,40 @@
 #contenedor1 {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    min-height: 100vh;
-    
-    background-color: var(--fondo);
-    transition: background-color 0.3s; // Transición suave
+  display: flex;
+  align-items: flex-start; /* Cambiado a flex-start para alinear el contenido al inicio */
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 16px; /* Añadido espaciado interno */
   
-    h1 {
-      font-size: 2rem;
-      color: var(--primary-color, #d5d5d5); // Color del título
-      
-    }
-  
-    p {
-      font-size: 1rem;
-      color: var(--textos); // Color del texto descriptivo
-      margin: 10px 0; // Espacio entre párrafos
-    }
-  
+  background-color: var(--fondo);
+  transition: background-color 0.3s; /* Transición suave */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra para el contenedor */
+}
 
-  }
+h2 {
+  font-size: 2rem; /* Tamaño del título */
+  color: var(--primary-color, #d5d5d5); /* Color del título */
+  margin-bottom: 10px; /* Espacio debajo del título */
+}
+
+h3 {
+  font-size: 1.5rem; /* Tamaño del subtítulo */
+  color: var(--primary-color, #ffffff); /* Color del subtítulo */
+  margin-top: 20px; /* Espacio encima del subtítulo */
+  margin-bottom: 5px; /* Espacio debajo del subtítulo */
+}
+
+p {
+  font-size: 1rem; /* Tamaño del texto descriptivo */
+  color: var(--textos, #ffffff); /* Color del texto descriptivo */
+  margin: 10px 0; /* Espacio entre párrafos */
+}
+
+.section {
+  width: 100%; /* Asegura que la sección ocupe todo el ancho */
+  margin-bottom: 20px; /* Espacio entre secciones */
+  padding: 10px; /* Espaciado interno */
+  background-color: #ffffff; /* Fondo blanco para las secciones */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Sombra para las secciones */
+}

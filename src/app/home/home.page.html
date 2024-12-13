@@ -14,7 +14,7 @@
               </ion-fab-button>
               <ion-fab-list side="end">
                 <ion-fab-button>
-                  <ion-icon (click)="borrarSecion()" (click)="logout()" name="log-out"></ion-icon>
+                  <ion-icon (click)="logout()" name="log-out"></ion-icon>
                 </ion-fab-button>
                 <ion-fab-button>
                   <ion-icon [routerLink]="['/pedir']" name="search"></ion-icon>
@@ -25,9 +25,7 @@
                 <ion-fab-button>
                   <ion-icon [routerLink]="['/perfil']" name="person"></ion-icon>
                 </ion-fab-button>
-                <ion-fab-button>
-                  <ion-icon (click)="cambiarTema()" src="/assets/{{icono}}.svg"></ion-icon>
-                </ion-fab-button>
+
               </ion-fab-list>
             </ion-fab>
               
@@ -71,9 +69,7 @@
                   <ion-fab-button>
                     <ion-icon [routerLink]="['/registro']" name="person-add"></ion-icon>
                   </ion-fab-button>
-                  <ion-fab-button>
-                    <ion-icon (click)="cambiarTema()" src="/assets/{{icono}}.svg"></ion-icon>
-                  </ion-fab-button>
+
                 </ion-fab-list>
               </ion-fab>
 

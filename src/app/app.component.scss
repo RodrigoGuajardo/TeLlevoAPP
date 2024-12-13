@@ -1,0 +1,15 @@
+#contenedor {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px; // Espacio alrededor del contenido
+    background-color: var(--fondo);
+    transition: background-color 0.3s; // Transición suave
+
+}
+
+
+ion-fab{
+    margin-left: 85%;
+}

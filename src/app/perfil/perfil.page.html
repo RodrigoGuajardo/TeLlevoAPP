@@ -21,9 +21,7 @@
         <ion-fab-button>
           <ion-icon [routerLink]="['/home']" name="home"></ion-icon>
         </ion-fab-button>
-        <ion-fab-button>
-          <ion-icon (click)="cambiarTema()" name="color-palette"></ion-icon>
-        </ion-fab-button>
+
       </ion-fab-list>
     </ion-fab>
 
@@ -32,25 +30,29 @@
 
         <h2>Bienvenido, {{ userName }}!</h2>
 
-      <h3>Viajes Creados</h3>
-      <ion-list>
-        <ion-item *ngFor="let viaje of viajesCreados">
-          <ion-label>
-            <h2>{{ viaje.destino }}</h2>
-            <p>Estado: {{ viaje.estado }}</p>
-          </ion-label>
-        </ion-item>
-      </ion-list>
+        <h3>Viajes Creados</h3>
+        <ion-list>
+          <ion-item class="section" *ngFor="let viaje of viajesCreados">
+            <ion-label>
+              <h2>{{ viaje.destino }}</h2>
+              <p>Nombre: {{ viaje.nombre }}</p>
+              <p>Estado: {{ viaje.estado }}</p>
+              <p>Fecha: {{ viaje.fecha }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
 
       <h3>Viajes Aceptados</h3>
       <ion-list>
-        <ion-item *ngFor="let viaje of viajesAceptados">
+        <ion-item class="section" *ngFor="let viaje of viajesAceptados">
           <ion-label>
             <h2>{{ viaje.destino }}</h2>
             <p>Estado: {{ viaje.estado }}</p>
           </ion-label>
         </ion-item>
       </ion-list>
+      
+
 
 
       <h2>Informacion de la Cuenta</h2>
@@ -60,6 +62,12 @@
 
 
 
+
+
+      <h2>Cambiar Contraseña</h2>
+
+      <input type="password" placeholder="Contraseña" [(ngModel)]="clave3">
+      <ion-button (click)="cambiarContra()">Cambiar Contraseña</ion-button>
       </div>
       
     </ion-content>

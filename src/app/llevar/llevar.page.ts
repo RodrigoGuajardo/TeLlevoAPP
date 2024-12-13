@@ -12,6 +12,7 @@ export class LlevarPage implements OnInit {
 
   
   userName: string = '';
+  userLog: string = '';
   direccion:any[]= []
   viajes:any[]= []
   destino=""
@@ -40,19 +41,42 @@ export class LlevarPage implements OnInit {
 
 
   checkUser() {
-    const usuarioStored = JSON.parse(localStorage.getItem('usuario') || 'null');
+    const usuarioStored = JSON.parse(localStorage.getItem('usuarioLogueado') || 'null');
     if (usuarioStored) {
-      this.userName = usuarioStored.nombre; // Asignar el nombre del usuario
+      this.userLog = usuarioStored.nombre; // Asignar el nombre del usuario
     }
   }
 
   isLoggedIn(): boolean {
-    return localStorage.getItem('usuario') !== null;
+    // return localStorage.getItem('usuarioLogueado') !== null;
+    
+
+
+    if ( localStorage.getItem('usuarioLogueado')!== null ) {
+      const usuarioStored = JSON.parse(localStorage.getItem('usuarioLogueado') || 'null');
+      if( usuarioStored.email !== '' ) {
+        return true;
+
+      }else{
+        return false;
+      }
+
+  }else{
+    return false;
+  }
   }
 
   logout() {
-    localStorage.removeItem('usuario'); // Eliminar el usuario del localStorage
-    this.userName = ''; // Limpiar el nombre del usuario
+    // Eliminar el usuario activo para dejarlo como usuario pasivo
+
+    const usuarioLogueado = {
+      email: '',
+      nombre: '',
+      apellido: '',
+      clave: '' 
+    };
+    localStorage.setItem('usuarioLogueado', JSON.stringify(usuarioLogueado));
+    this.router.navigate(['/home']);
   }
 
 

@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class RegistroPage implements OnInit {
 
+  usuarioCreado: any [] = []
+
   icono = "oscuro";
   users: any[] = JSON.parse(localStorage.getItem('users') || '[]');
   email = "";
@@ -85,11 +87,11 @@ export class RegistroPage implements OnInit {
       valid = false;
     }
     if (this.clave1 == "" || this.clave1.length < 8 || this.clave1 !== this.clave2) {
-      this.animarError(2);
+      this.animarError(3);
       valid = false;
     }
-    if (this.clave2 == "") {
-      this.animarError(3);
+    if (this.clave2 == ""|| this.clave2 !== this.clave1) {
+      this.animarError(2);
       valid = false;
     }
 

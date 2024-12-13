@@ -21,7 +21,7 @@ import {
 export class HomePage implements OnInit {
 
   userName: string = '';
-
+  userLog: string = '';
   activeUser:any ;
   icono = "oscuro"
   usuario = ""
@@ -40,22 +40,41 @@ export class HomePage implements OnInit {
   }
 
   checkUser() {
-    const usuarioStored = JSON.parse(localStorage.getItem('usuario') || 'null');
+    const usuarioStored = JSON.parse(localStorage.getItem('usuarioLogueado') || 'null');
     if (usuarioStored) {
-      this.userName = usuarioStored.nombre; // Asignar el nombre del usuario
+      this.userLog = usuarioStored.nombre; // Asignar el nombre del usuario
     }
   }
 
   isLoggedIn(): boolean {
-    return localStorage.getItem('usuario') !== null;
-  }
-
-  logout() {
-    // Eliminar el usuario activo del localStorage
-    localStorage.removeItem('activeUser');
+    // return localStorage.getItem('usuarioLogueado') !== null;
     
-    // Redirigir al login
-    window.location.href = '/login'; // O usar this.router.navigate(['/login']);
+
+
+    if ( localStorage.getItem('usuarioLogueado')!== null ) {
+      const usuarioStored = JSON.parse(localStorage.getItem('usuarioLogueado') || 'null');
+      if( usuarioStored.email !== '' ) {
+        return true;
+
+      }else{
+        return false;
+      }
+
+  }else{
+    return false;
+  }
+  }
+  logout() {
+    // Eliminar el usuario activo para dejarlo como usuario pasivo
+
+    const usuarioLogueado = {
+      email: '',
+      nombre: '',
+      apellido: '',
+      clave: '' 
+    };
+    localStorage.setItem('usuarioLogueado', JSON.stringify(usuarioLogueado));
+    this.router.navigate(['/home']);
   }
 
   navigateToPedir() {

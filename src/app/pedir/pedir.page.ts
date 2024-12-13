@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AnimationController, ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pedir',
@@ -10,6 +11,8 @@ import { AnimationController, ToastController } from '@ionic/angular';
 export class PedirPage implements OnInit {
 
   userName: string = '';
+  userLog: string ='';
+  email: string = '';
   destino = ""
   nombre = ""
   destinos: any[] = []
@@ -20,7 +23,8 @@ export class PedirPage implements OnInit {
   constructor(
     private anim: AnimationController,
     private toast: ToastController,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {
     
 
@@ -34,34 +38,72 @@ export class PedirPage implements OnInit {
 
 
   checkUser() {
-    const usuarioStored = JSON.parse(localStorage.getItem('usuario') || 'null');
+    const usuarioStored = JSON.parse(localStorage.getItem('usuarioLogueado') || 'null');
     if (usuarioStored) {
-      this.userName = usuarioStored.nombre; // Asignar el nombre del usuario
+      this.userLog = usuarioStored.nombre; // Asignar el nombre del usuario
     }
   }
 
   isLoggedIn(): boolean {
-    return localStorage.getItem('usuario') !== null;
+    // return localStorage.getItem('usuarioLogueado') !== null;
+    
+
+
+    if ( localStorage.getItem('usuarioLogueado')!== null ) {
+      const usuarioStored = JSON.parse(localStorage.getItem('usuarioLogueado') || 'null');
+      if( usuarioStored.email !== '' ) {
+        return true;
+
+      }else{
+        return false;
+      }
+
+  }else{
+    return false;
+  }
   }
 
   logout() {
-    // localStorage.removeItem('usuario'); // Eliminar el usuario del localStorage
-    this.userName = ''; // Limpiar el nombre del usuario
-  }
+    // Eliminar el usuario activo para dejarlo como usuario pasivo
 
-  crearViajePerfil(destino: string) {
-    const viajeNuevo = {
-      destino: destino,
-      estado: 'Creado'
+    const usuarioLogueado = {
+      email: '',
+      nombre: '',
+      apellido: '',
+      clave: '' 
     };
-
-    let viajesCreados = JSON.parse(localStorage.getItem('viajesCreados') || '[]');
-    viajesCreados.push(viajeNuevo);
-    localStorage.setItem('viajesCreados', JSON.stringify(viajesCreados));
+    localStorage.setItem('usuarioLogueado', JSON.stringify(usuarioLogueado));
+    this.router.navigate(['/home']);
   }
+
 
 
   crearViaje(nombre: string, destino: string) {
+    const emailUsuario = JSON.parse(localStorage.getItem('usuarioLogueado') || 'null').email;
+    
+    // Obtener los viajes guardados en localStorage
+    const viajesPorUsuario = JSON.parse(localStorage.getItem('viajesPorUsuario') || '{}');
+    
+    // Si no existe un array para el usuario, inicialízalo
+    if (!viajesPorUsuario[emailUsuario]) {
+      viajesPorUsuario[emailUsuario] = [];
+    }
+  
+    // Crear el nuevo viaje
+    const nuevoViaje = { nombre, destino, fecha: new Date().toISOString() };
+  
+    // Agregar el nuevo viaje al array del usuario
+    viajesPorUsuario[emailUsuario].push(nuevoViaje);
+  
+    // Guardar de nuevo en localStorage
+    localStorage.setItem('viajesPorUsuario', JSON.stringify(viajesPorUsuario));
+  
+    console.log('Viaje creado:', nuevoViaje);
+  
+    this.showToast(`Hola ${nombre}, su viaje a ${destino} está en espera!`);
+  }
+
+  crearViajesLlevar(nombre: string, destino: string) {
     const viajes = JSON.parse(localStorage.getItem('viajes') || '[]');
     // Aquí agregamos el nombre y el destino al nuevo viaje
 
@@ -73,9 +115,15 @@ export class PedirPage implements OnInit {
 
     console.log('Viaje creado:', nuevoViaje);
 
-    this.showToast(`Hola ${nombre} su viaje a ${destino} esta en espera!.`)
-    // Aquí puedes mostrar un toast o notificación de éxito
   }
+
+
+
+  obtenerViajesPorUsuario(email: string) {
+    const viajesPorUsuario = JSON.parse(localStorage.getItem('viajesPorUsuario') || '{}');
+    return viajesPorUsuario[email] || []; // Devuelve un array vacío si no hay viajes
+  }
+  
 
 
   cambiarTema() {
@@ -135,4 +183,5 @@ export class PedirPage implements OnInit {
     
   }
 
+  
 }
